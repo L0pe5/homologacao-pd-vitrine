@@ -55,6 +55,12 @@ async function renderizarCardProjeto(projeto) {
 // Preenche o card principal do perfil
 async function preencherCardPerfil(usuario) {
     if (!usuario) return;
+    const projetoss = await pegaProjetosDoUsuario(usuario.id)
+    const resultado = projetoss.find((proj) => {
+        return proj.name === usuario.username
+    })
+    const readmePessoal = await pegaConteudoRawReadme(resultado);
+    //const readmeFormatado = readmePessoal ? marked.parse(readmePessoal) : null;
 
     // Usa a função de utils.js para carregar o avatar principal
     const nomeEl = document.querySelector('.nome');
@@ -67,7 +73,7 @@ async function preencherCardPerfil(usuario) {
     if (nomeEl) nomeEl.textContent = usuario.name || 'Nome não informado';
     if (fotoEl) fotoEl.src = usuario.avatar_url;
     if (descricaoEl) descricaoEl.textContent = usuario.bio || 'Sem descrição.';
-    if (bioCompletaEl) bioCompletaEl.textContent = usuario.bio || 'Nenhuma informação adicional fornecida.';
+    if (bioCompletaEl) bioCompletaEl.innerHTML = readmePessoal || 'Nenhuma informação adicional fornecida.';
 
     // Atualiza links sociais
     if (linkGitlabEl) {
