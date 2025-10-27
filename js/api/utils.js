@@ -139,8 +139,7 @@ async function criarVetorBadges(idProjeto) {
     const nomesLinguagens = Object.keys(response);
     const imgsBadges = [];
     nomesLinguagens.map((linguagem) => {
-        linguagem = linguagem.toLowerCase();
-        imgsBadges.push(`imagens/badges/${linguagem}.svg`)
+        imgsBadges.push(`imagens/badges/${linguagem.toLowerCase()}.svg`)
     })
     return imgsBadges;
 }
