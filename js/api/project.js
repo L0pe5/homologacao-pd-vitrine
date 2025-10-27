@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             pegaColaboradoresDoProjeto(projetoId)
         ]);
 
-        console.log(colaboradores)
+        //console.log(colaboradores)
         projectImages = await Promise.all(imagensUrls.map(url => carregarImagemPrivada(url)));
 
         // preenche Título e Descrição (do Readme)
