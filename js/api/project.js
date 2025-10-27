@@ -67,18 +67,16 @@ document.addEventListener('DOMContentLoaded', async function () {
             linksContainer.innerHTML = '';
             let hasLink = false;
             // Link da "Aplicação" (homepage)
-            if (projeto.homepage) {
-                linksContainer.innerHTML += `<a href="${projeto.homepage}" class="btn btn-project" target="_blank" rel="noopener noreferrer">Aplicação</a>`;
-                hasLink = true;
-            }
+            badgesProjeto = await pegaBadgesAplicacaoProjeto(projetoId);
+            projeto.badges = badgesProjeto;
+
+            linksContainer.innerHTML += `<a href="${projeto.badges[0]?.link_url}" class="btn btn-project" target="_blank" rel="noopener noreferrer">Aplicação</a>`;
+            hasLink = true;
+
             // Link do "Repositório"
-            if (projeto.web_url) {
-                linksContainer.innerHTML += `<a href="${projeto.web_url}" class="btn btn-project" target="_blank" rel="noopener noreferrer">Repositório</a>`;
-                hasLink = true;
-            }
-            if (!hasLink) {
-                linksContainer.innerHTML = '<p>Nenhum link disponível.</p>';
-            }
+            linksContainer.innerHTML += `<a href="${projeto.web_url}" class="btn btn-project" target="_blank" rel="noopener noreferrer">Repositório</a>`;
+            hasLink = true;
+            
         }
 
         // Preenche Colaboradores
