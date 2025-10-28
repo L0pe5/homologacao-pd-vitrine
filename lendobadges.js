@@ -1,6 +1,9 @@
 async function lerInfos() {
-    const infos = require('./badges.json')
-    return infos;
+    const response = await fetch('./badges.json');
+    if (!response.ok) {
+        throw new Error('Erro ao carregar badges.json');
+    }
+    return await response.json();
 }
 
 async function responsavel_tecnico(user) {
