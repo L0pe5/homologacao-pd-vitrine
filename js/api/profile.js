@@ -59,8 +59,18 @@ async function preencherCardPerfil(usuario) {
     const resultado = projetoss.find((proj) => {
         return proj.name === usuario.username
     })
-    const readmePessoal = await pegaConteudoRawReadme(resultado);
-    //const readmeFormatado = readmePessoal ? marked.parse(readmePessoal) : null;
+
+    let readmePessoal = null;
+    let readmePessoal2 = 'Nenhum README encontrado no GitLab do usuário'
+    try {
+        readmePessoal = await pegaConteudoRawReadme(resultado);
+        if (readmePessoal) {
+            readmePessoal2 = marked.parse(readmePessoal);
+        }
+    }
+    catch (error) {
+        console.warn("User sem README")
+    }
 
     // Usa a função de utils.js para carregar o avatar principal
     const nomeEl = document.querySelector('.nome');
@@ -73,7 +83,7 @@ async function preencherCardPerfil(usuario) {
     if (nomeEl) nomeEl.textContent = usuario.name || 'Nome não informado';
     if (fotoEl) fotoEl.src = usuario.avatar_url;
     if (descricaoEl) descricaoEl.textContent = usuario.bio || 'Sem descrição.';
-    if (bioCompletaEl) bioCompletaEl.innerHTML = readmePessoal || 'Nenhuma informação adicional fornecida.';
+    if (bioCompletaEl) bioCompletaEl.innerHTML = readmePessoal2 || 'Nenhuma informação adicional fornecida.';
 
     // Atualiza links sociais
     if (linkGitlabEl) {
