@@ -349,10 +349,17 @@ header {
 }
 
 .dropdown-select .level-item {
-    font-size: 1rem;
+    font-size: 0.5rem;
     font-weight: 400;
     padding: 0;
 }
+
+@media (min-width: 500px) {
+    .dropdown-select .level-item {
+        font-size: 1.1rem;
+    }
+}
+
 
 .dropdown-select .star,
 .level-dropdown-menu .star {
