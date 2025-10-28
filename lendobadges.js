@@ -32,7 +32,6 @@ async function main() {
     const sup = await supervisor('leonardo.maciel')
     const form = await formacoes('leonardo.maciel')
     const linguagens = await badges('leonardo.maciel')
-
     console.log(resp, sup, form, linguagens);
 }
 
