@@ -1,4 +1,4 @@
-// const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'caio.caldeira', 'geovanna.alves', 'matheus.lopes', 'kaue.santos', 'felipe.deoliveira', 'daniel.berbert', 'lucas.alves', 'leandro.ribeiro', 'matheus.casagrande', 'paulo.martins', 'bruno.luz', 'arthur.othero', 'thalisson.santos', 'marcos.alexandria', 'joao.seixas'];
+//const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'caio.caldeira', 'geovanna.alves', 'matheus.lopes', 'kaue.santos', 'felipe.deoliveira', 'daniel.berbert', 'lucas.alves', 'leandro.ribeiro', 'matheus.casagrande', 'paulo.martins', 'bruno.luz', 'arthur.othero', 'thalisson.santos', 'marcos.alexandria', 'joao.seixas'];
 const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'geovanna.alves', 'matheus.lopes'];
 
 // monta e adiciona o card de um colaborador na página.
@@ -16,6 +16,10 @@ async function adicionarCard(pessoa) {
     const avatarUrl = usuarioBasico.avatar_url;
     //console.log(avatarUrl)
     const divMae = document.querySelector('.div-cards-index');
+
+    //pegando supervisor e responsável
+    //const nome_resp = responsavel_tecnico(usuarioBasico.username)
+    //const supervisor = supervisor(usuarioBasico.username)
     divMae.innerHTML += `
         <article
             class="col card-index d-flex flex-column justify-content-center align-items-center m-0 p-0 position-relative">
@@ -52,7 +56,7 @@ async function adicionarCard(pessoa) {
                             class="card-index__icones">
                         <div>
                             <h2 class="fw-bold">Responsável técnico:</h2>
-                            <p>Matheus Lopes</p>
+                            <p>Júlio Pereira</p>
                         </div>
                     </div>
                     <div class="card-index__coordenadores d-flex justify-content-center align-items-center gap-1">
