@@ -1,0 +1,308 @@
+[
+    {
+        "nome": "emanuel.bravo",
+        "badges": {
+            "html": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            },
+            "css": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            },
+            "js": {
+                "nivel": 2,
+                "descricao": "Básico"
+            }
+        }
+    },
+    {
+        "nome": "leonardo.maciel",
+        "badges": {
+            "html": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            },
+            "css": {
+                "nivel": 2,
+                "descricao": "Básico"
+            },
+            "js": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            }
+        }
+    },
+    {
+        "nome": "joao.tavares",
+        "badges": {
+            "html": {
+                "nivel": 1,
+                "descricao": "Iniciante"
+            },
+            "css": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            },
+            "js": {
+                "nivel": 2,
+                "descricao": "Básico"
+            }
+        }
+    },
+    {
+        "nome": "caio.caldeira",
+        "badges": {
+            "html": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "css": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            },
+            "js": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            }
+        }
+    },
+    {
+        "nome": "geovanna.alves",
+        "badges": {
+            "html": {
+                "nivel": 2,
+                "descricao": "Básico"
+            },
+            "css": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "js": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            }
+        }
+    },
+    {
+        "nome": "matheus.lopes",
+        "badges": {
+            "html": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            },
+            "css": {
+                "nivel": 1,
+                "descricao": "Iniciante"
+            },
+            "js": {
+                "nivel": 2,
+                "descricao": "Básico"
+            }
+        }
+    },
+    {
+        "nome": "kaue.santos",
+        "badges": {
+            "html": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            },
+            "css": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "js": {
+                "nivel": 1,
+                "descricao": "Iniciante"
+            }
+        }
+    },
+    {
+        "nome": "felipe.deoliveira",
+        "badges": {
+            "html": {
+                "nivel": 2,
+                "descricao": "Básico"
+            },
+            "css": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            },
+            "js": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            }
+        }
+    },
+    {
+        "nome": "daniel.berbert",
+        "badges": {
+            "html": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "css": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            },
+            "js": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            }
+        }
+    },
+    {
+        "nome": "lucas.alves",
+        "badges": {
+            "html": {
+                "nivel": 1,
+                "descricao": "Iniciante"
+            },
+            "css": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            },
+            "js": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            }
+        }
+    },
+    {
+        "nome": "leandro.ribeiro",
+        "badges": {
+            "html": {
+                "nivel": 2,
+                "descricao": "Básico"
+            },
+            "css": {
+                "nivel": 1,
+                "descricao": "Iniciante"
+            },
+            "js": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            }
+        }
+    },
+    {
+        "nome": "matheus.casagrande",
+        "badges": {
+            "html": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            },
+            "css": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "js": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            }
+        }
+    },
+    {
+        "nome": "paulo.martins",
+        "badges": {
+            "html": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            },
+            "css": {
+                "nivel": 2,
+                "descricao": "Básico"
+            },
+            "js": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            }
+        }
+    },
+    {
+        "nome": "bruno.luz",
+        "badges": {
+            "html": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "css": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            },
+            "js": {
+                "nivel": 2,
+                "descricao": "Básico"
+            }
+        }
+    },
+    {
+        "nome": "arthur.othero",
+        "badges": {
+            "html": {
+                "nivel": 2,
+                "descricao": "Básico"
+            },
+            "css": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            },
+            "js": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            }
+        }
+    },
+    {
+        "nome": "thalisson.santos",
+        "badges": {
+            "html": {
+                "nivel": 1,
+                "descricao": "Iniciante"
+            },
+            "css": {
+                "nivel": 2,
+                "descricao": "Básico"
+            },
+            "js": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            }
+        }
+    },
+    {
+        "nome": "marcos.alexandria",
+        "badges": {
+            "html": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            },
+            "css": {
+                "nivel": 1,
+                "descricao": "Iniciante"
+            },
+            "js": {
+                "nivel": 2,
+                "descricao": "Básico"
+            }
+        }
+    },
+    {
+        "nome": "joao.seixas",
+        "badges": {
+            "html": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            },
+            "css": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            },
+            "js": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            }
+        }
+    }
+]
