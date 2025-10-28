@@ -3,18 +3,24 @@
         "nome": "emanuel.bravo",
         "badges": {
             "html": {
-                "nivel": 3,
-                "descricao": "Intermediário"
+                "nivel": 2,
+                "descricao": "Básico"
             },
             "css": {
                 "nivel": 4,
                 "descricao": "Avançado"
             },
             "js": {
-                "nivel": 2,
-                "descricao": "Básico"
+                "nivel": 3,
+                "descricao": "Intermediário"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
         "nome": "leonardo.maciel",
@@ -28,121 +34,163 @@
                 "descricao": "Básico"
             },
             "js": {
-                "nivel": 5,
-                "descricao": "Especialista"
+                "nivel": 3,
+                "descricao": "Intermediário"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
         "nome": "joao.tavares",
         "badges": {
             "html": {
-                "nivel": 1,
-                "descricao": "Iniciante"
+                "nivel": 5,
+                "descricao": "Especialista"
             },
             "css": {
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
             "js": {
-                "nivel": 2,
-                "descricao": "Básico"
+                "nivel": 1,
+                "descricao": "Iniciante"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
         "nome": "caio.caldeira",
         "badges": {
             "html": {
-                "nivel": 5,
-                "descricao": "Especialista"
+                "nivel": 3,
+                "descricao": "Intermediário"
             },
             "css": {
                 "nivel": 4,
                 "descricao": "Avançado"
             },
             "js": {
-                "nivel": 3,
-                "descricao": "Intermediário"
+                "nivel": 2,
+                "descricao": "Básico"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
         "nome": "geovanna.alves",
         "badges": {
             "html": {
-                "nivel": 2,
-                "descricao": "Básico"
+                "nivel": 1,
+                "descricao": "Iniciante"
             },
             "css": {
-                "nivel": 5,
-                "descricao": "Especialista"
+                "nivel": 3,
+                "descricao": "Intermediário"
             },
             "js": {
-                "nivel": 4,
-                "descricao": "Avançado"
+                "nivel": 2,
+                "descricao": "Básico"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
         "nome": "matheus.lopes",
         "badges": {
             "html": {
-                "nivel": 3,
-                "descricao": "Intermediário"
+                "nivel": 5,
+                "descricao": "Especialista"
             },
             "css": {
-                "nivel": 1,
-                "descricao": "Iniciante"
+                "nivel": 4,
+                "descricao": "Avançado"
             },
             "js": {
-                "nivel": 2,
-                "descricao": "Básico"
+                "nivel": 5,
+                "descricao": "Especialista"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
         "nome": "kaue.santos",
         "badges": {
             "html": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            },
+            "css": {
+                "nivel": 1,
+                "descricao": "Iniciante"
+            },
+            "js": {
+                "nivel": 2,
+                "descricao": "Básico"
+            }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
+    },
+    {
+        "nome": "felipe.deoliveira",
+        "badges": {
+            "html": {
                 "nivel": 4,
                 "descricao": "Avançado"
             },
             "css": {
-                "nivel": 5,
-                "descricao": "Especialista"
+                "nivel": 3,
+                "descricao": "Intermediário"
             },
             "js": {
-                "nivel": 1,
-                "descricao": "Iniciante"
+                "nivel": 5,
+                "descricao": "Especialista"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
-        "nome": "felipe.deoliveira",
+        "nome": "daniel.berbert",
         "badges": {
             "html": {
                 "nivel": 2,
                 "descricao": "Básico"
             },
             "css": {
-                "nivel": 3,
-                "descricao": "Intermediário"
-            },
-            "js": {
-                "nivel": 5,
-                "descricao": "Especialista"
-            }
-        }
-    },
-    {
-        "nome": "daniel.berbert",
-        "badges": {
-            "html": {
-                "nivel": 5,
-                "descricao": "Especialista"
-            },
-            "css": {
                 "nivel": 4,
                 "descricao": "Avançado"
             },
@@ -150,7 +198,13 @@
                 "nivel": 3,
                 "descricao": "Intermediário"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
         "nome": "lucas.alves",
@@ -160,138 +214,163 @@
                 "descricao": "Iniciante"
             },
             "css": {
-                "nivel": 3,
-                "descricao": "Intermediário"
+                "nivel": 2,
+                "descricao": "Básico"
             },
             "js": {
-                "nivel": 4,
-                "descricao": "Avançado"
+                "nivel": 3,
+                "descricao": "Intermediário"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
         "nome": "leandro.ribeiro",
         "badges": {
             "html": {
-                "nivel": 2,
-                "descricao": "Básico"
-            },
-            "css": {
-                "nivel": 1,
-                "descricao": "Iniciante"
-            },
-            "js": {
                 "nivel": 5,
                 "descricao": "Especialista"
+            },
+            "css": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "js": {
+                "nivel": 4,
+                "descricao": "Avançado"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
         "nome": "matheus.casagrande",
         "badges": {
             "html": {
-                "nivel": 4,
-                "descricao": "Avançado"
-            },
-            "css": {
-                "nivel": 5,
-                "descricao": "Especialista"
-            },
-            "js": {
                 "nivel": 3,
                 "descricao": "Intermediário"
+            },
+            "css": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            },
+            "js": {
+                "nivel": 2,
+                "descricao": "Básico"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
         "nome": "paulo.martins",
         "badges": {
             "html": {
-                "nivel": 3,
-                "descricao": "Intermediário"
-            },
-            "css": {
                 "nivel": 2,
                 "descricao": "Básico"
+            },
+            "css": {
+                "nivel": 1,
+                "descricao": "Iniciante"
             },
             "js": {
                 "nivel": 4,
                 "descricao": "Avançado"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
         "nome": "bruno.luz",
         "badges": {
             "html": {
-                "nivel": 5,
-                "descricao": "Especialista"
-            },
-            "css": {
                 "nivel": 4,
                 "descricao": "Avançado"
             },
+            "css": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
             "js": {
-                "nivel": 2,
-                "descricao": "Básico"
+                "nivel": 4,
+                "descricao": "Avançado"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
         "nome": "arthur.othero",
         "badges": {
             "html": {
+                "nivel": 1,
+                "descricao": "Iniciante"
+            },
+            "css": {
                 "nivel": 2,
                 "descricao": "Básico"
             },
-            "css": {
+            "js": {
                 "nivel": 3,
                 "descricao": "Intermediário"
-            },
-            "js": {
-                "nivel": 5,
-                "descricao": "Especialista"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
         "nome": "thalisson.santos",
         "badges": {
             "html": {
-                "nivel": 1,
-                "descricao": "Iniciante"
+                "nivel": 5,
+                "descricao": "Especialista"
             },
             "css": {
-                "nivel": 2,
-                "descricao": "Básico"
-            },
-            "js": {
                 "nivel": 3,
                 "descricao": "Intermediário"
+            },
+            "js": {
+                "nivel": 2,
+                "descricao": "Básico"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     },
     {
         "nome": "marcos.alexandria",
         "badges": {
             "html": {
-                "nivel": 4,
-                "descricao": "Avançado"
-            },
-            "css": {
-                "nivel": 1,
-                "descricao": "Iniciante"
-            },
-            "js": {
-                "nivel": 2,
-                "descricao": "Básico"
-            }
-        }
-    },
-    {
-        "nome": "joao.seixas",
-        "badges": {
-            "html": {
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
@@ -300,9 +379,38 @@
                 "descricao": "Avançado"
             },
             "js": {
+                "nivel": 1,
+                "descricao": "Iniciante"
+            }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
+    },
+    {
+        "nome": "joao.seixas",
+        "badges": {
+            "html": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            },
+            "css": {
+                "nivel": 2,
+                "descricao": "Básico"
+            },
+            "js": {
                 "nivel": 5,
                 "descricao": "Especialista"
             }
-        }
+        },
+        "responsavel_tecnico": "Júlio Pereira",
+        "supervisor": "Tiago Martins",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET-XY"
+        ]
     }
 ]
