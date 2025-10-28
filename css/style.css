@@ -143,6 +143,7 @@ header {
 }
 
 /* fim cabeçalho */
+
 /* modal btn sistema */
 #btn-sistemaModal {
     border: none;
@@ -348,9 +349,17 @@ header {
 }
 
 .dropdown-select .level-item {
-    font-size: 9px;
+    font-size: 0.5rem;
+    font-weight: 400;
     padding: 0;
 }
+
+@media (min-width: 500px) {
+    .dropdown-select .level-item {
+        font-size: 1.1rem;
+    }
+}
+
 
 .dropdown-select .star,
 .level-dropdown-menu .star {
@@ -639,6 +648,8 @@ header {
 
     .level-item {
         font-size: 16px;
+        display: flex;
+        gap: 10px;
     }
 
     /* fim modal filtragem */
@@ -759,7 +770,6 @@ header {
 .descricao {
     font-size: clamp(16px, 5vw, 20px);
     font-weight: 400;
-    max-height: 69px;
     overflow: hidden;
     margin-left: clamp(14px, 4.375vw, 21.8px) !important;
     margin-right: clamp(14px, 4.375vw, 21.8px) !important;
@@ -1020,6 +1030,7 @@ figcaption {
 
 
 @media (min-width: 720px) {
+
     .container-meus-projetos,
     .container-projetos-compartilhados {
         align-items: flex-start;
@@ -1196,7 +1207,7 @@ figcaption {
 
 @media (min-width: 720px) {
     .conteudo-card-tela-perfil {
-    max-height: 267px;
+        max-height: 267px;
         gap: 5%;
     }
 }
@@ -1332,7 +1343,7 @@ figcaption {
     margin: 0 !important;
     padding: 0 !important;
     height: 15px;
-    }
+}
 
 @media (min-width: 500px) {
     .badges-card-projeto {
@@ -1342,7 +1353,7 @@ figcaption {
 
 @media (min-width: 720px) {
     .badges-card-projeto {
-        max-height: 79px;        
+        max-height: 79px;
         gap: 12px 13px;
     }
 
@@ -1557,8 +1568,8 @@ figcaption {
 
 #gallery-modal .btn-close {
     position: absolute;
-    top: -30px;
-    right: -30px;
+    top: 15px;
+    right: 30px;
     z-index: 1060;
     opacity: 1;
     font-size: 1.2rem;
@@ -1603,11 +1614,21 @@ figcaption {
 }
 
 .modal-nav-btn.prev {
-    left: -70px;
+    left: -4.5vw;
 }
 
 .modal-nav-btn.next {
-    right: -70px;
+    right: -4.5vw;
+}
+
+.carousel-control-prev-icon {
+    background-color: black;
+    border-radius: 100%;
+}
+
+.carousel-control-next-icon {
+    background-color: black;
+    border-radius: 100%;
 }
 
 /*INÍCIO DO CONTEÚDO DE PERFIL*/
@@ -1831,18 +1852,11 @@ figure {
 }
 
 @media (max-width: 719px) {
-    .modal-nav-btn.prev {
-        left: 5px;
-    }
-
-    .modal-nav-btn.next {
-        right: 5px;
-    }
 
     #gallery-modal .btn-close {
-        top: 10px;
-        right: 10px;
-        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 12px;
+        left: 90%;
     }
 
 }
@@ -2176,6 +2190,7 @@ figure {
     height: 100%;
     object-fit: cover;
     display: block;
+
 }
 
 #carrossel-mobile .carousel-control-prev,
@@ -2598,7 +2613,7 @@ figure {
 
     .badges-section {
         max-height: 215px;
-        height: 14.93vw;
+        height: 100%;
         min-height: 177px;
         overflow-y: auto;
         overflow-x: hidden;
@@ -2755,3 +2770,21 @@ figure {
 }
 
 /*FIM DA CORREÇÃO DA FEAT36*/
+
+/*FORMATACAO DO README DINAMICO*/
+.readme-p {
+    max-height: 535px;
+    overflow: auto;
+}
+
+.readme-p::-webkit-scrollbar {
+    width: 1px;
+}
+
+.readme-p::-webkit-scrollbar-track {
+    background: var(--cor-bg-pagina);
+}
+
+.readme-p::-webkit-scrollbar-thumb {
+    background: var(--amarelo-pd);
+}
