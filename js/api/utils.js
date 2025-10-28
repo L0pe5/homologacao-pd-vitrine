@@ -56,8 +56,20 @@ async function pegaDetalhesDoProjeto(id) {
     }
 }
 
-// função auxiliar para carregar avatares e imagens privadas como Blob URLs.
+// pega link de aplicação no ar de um projeto específico pelo ID.
+async function pegaBadgesAplicacaoProjeto(id) {
+    try {
+        const response = await fetch(`${gitlabApiUrl}/projects/${id}/badges`, { headers: authHeaders });
+        if (!response.ok) throw new Error(`Projeto ${id} não encontrado ou erro ${response.status}`);
+        const badges = await response.json();
+        return badges;
+    } catch (error) {
+        console.error("Erro ao buscar badges do projeto:", error);
+        return null;
+    }
+}
 
+// função auxiliar para carregar avatares e imagens privadas como Blob URLs.
 async function carregarImagemPrivada(url) {
     if (!url) {
         return '/imagens/icones/user.svg'; // imagem genérica
