@@ -143,6 +143,7 @@ header {
 }
 
 /* fim cabeçalho */
+
 /* modal btn sistema */
 #btn-sistemaModal {
     border: none;
@@ -348,7 +349,8 @@ header {
 }
 
 .dropdown-select .level-item {
-    font-size: 9px;
+    font-size: 1rem;
+    font-weight: 400;
     padding: 0;
 }
 
@@ -639,6 +641,8 @@ header {
 
     .level-item {
         font-size: 16px;
+        display: flex;
+        gap: 10px;
     }
 
     /* fim modal filtragem */
@@ -1841,13 +1845,6 @@ figure {
 }
 
 @media (max-width: 719px) {
-    .modal-nav-btn.prev {
-        display: none;
-    }
-
-    .modal-nav-btn.next {
-        display: none;
-    }
 
     #gallery-modal .btn-close {
         position: fixed;
