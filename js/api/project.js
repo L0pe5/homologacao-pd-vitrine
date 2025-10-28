@@ -122,8 +122,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         const prevBtn = document.getElementById('modal-prev-btn');
         const nextBtn = document.getElementById('modal-next-btn');
 
-        if (prevBtn) prevBtn.style.display = (index === 0) ? 'none' : 'block';
-        if (nextBtn) nextBtn.style.display = (index === projectImages.length - 1) ? 'none' : 'block';
+        if (prevBtn) prevBtn.style.display = (index === 0) ? 'none' : 'flex';
+        if (nextBtn) nextBtn.style.display = (index === projectImages.length - 1) ? 'none' : 'flex';
     }
 
     // carrosel mobile
