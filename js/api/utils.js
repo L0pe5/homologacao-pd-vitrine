@@ -34,39 +34,39 @@ async function pegaDetalhesDoUsuario(id) {
 
 // pega todos os projetos (próprios e compartilhados) de um usuário pelo ID.
 async function pegaProjetosDoUsuario(userId) {
-    try {
-        const response = await fetch(`${gitlabApiUrl}/users/${userId}/projects`, { headers: authHeaders });
-        if (!response.ok) throw new Error(`Projetos do usuário ${userId} não encontrados ou erro ${response.status}`);
-        return await response.json();
-    } catch (error) {
-        console.error("Erro ao buscar projetos:", error);
-        return []; // Retorna um array vazio em caso de erro
-    }
+try {
+    const response = await fetch(`${gitlabApiUrl}/users/${userId}/projects`, { headers: authHeaders });
+    if (!response.ok) throw new Error(`Projetos do usuário ${userId} não encontrados ou erro ${response.status}`);
+    return await response.json();
+} catch (error) {
+    console.error("Erro ao buscar projetos:", error);
+    return []; // Retorna um array vazio em caso de erro
+}
 }
 
 // pega detalhes de um projeto específico pelo ID.
 async function pegaDetalhesDoProjeto(id) {
-    try {
-        const response = await fetch(`${gitlabApiUrl}/projects/${id}`, { headers: authHeaders });
-        if (!response.ok) throw new Error(`Projeto ${id} não encontrado ou erro ${response.status}`);
-        return await response.json();
-    } catch (error) {
-        console.error("Erro ao buscar detalhes do projeto:", error);
-        return null;
-    }
+try {
+    const response = await fetch(`${gitlabApiUrl}/projects/${id}`, { headers: authHeaders });
+    if (!response.ok) throw new Error(`Projeto ${id} não encontrado ou erro ${response.status}`);
+    return await response.json();
+} catch (error) {
+    console.error("Erro ao buscar detalhes do projeto:", error);
+    return null;
+}
 }
 
 // pega link de aplicação no ar de um projeto específico pelo ID.
 async function pegaBadgesAplicacaoProjeto(id) {
-    try {
-        const response = await fetch(`${gitlabApiUrl}/projects/${id}/badges`, { headers: authHeaders });
-        if (!response.ok) throw new Error(`Projeto ${id} não encontrado ou erro ${response.status}`);
-        const badges = await response.json();
-        return badges;
-    } catch (error) {
-        console.error("Erro ao buscar badges do projeto:", error);
-        return null;
-    }
+try {
+    const response = await fetch(`${gitlabApiUrl}/projects/${id}/badges`, { headers: authHeaders });
+    if (!response.ok) throw new Error(`Projeto ${id} não encontrado ou erro ${response.status}`);
+    const badges = await response.json();
+    return badges;
+} catch (error) {
+    console.error("Erro ao buscar badges do projeto:", error);
+    return null;
+}
 }
 
 // função auxiliar para carregar avatares e imagens privadas como Blob URLs.

@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const filterModalEl = document.getElementById('filterModal');
+    const filterModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('filterModal'));
+    const searchInput = document.getElementById('filter-name');
     const clearBtn = document.getElementById('clear-btn');
     const searchBtn = document.getElementById('search-btn');
     const addFilterBtn = document.getElementById('add-filter-btn');
     const addedFiltersContainer = document.getElementById('added-filters-container');
     const nameInput = document.getElementById('filter-name');
+    const cardsContainer = document.querySelector('.div-cards-index');
 
     const selectionRow = document.getElementById('selection-row');
     const badgeSelect = selectionRow.querySelector('.badge-select');
@@ -111,6 +113,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+
+    // aplica o filtro de nome
+    function aplicarFiltro() {
+        const termoBusca = searchInput.value.toLowerCase().trim();
+        const todosCards = cardsContainer.querySelectorAll('.card-index');
+
+        todosCards.forEach(card => {
+            const nomeDoCard = (card.dataset.name || '').toLowerCase();
+
+            if (nomeDoCard.includes(termoBusca)) {
+                card.classList.remove('d-none');
+            } else {
+                card.classList.add('d-none');
+            }
+        });
+    }
+    
+    // limpar todos os filtros
+    const clearFilters = () => {
+        nameInput.value = '';
+        addedFiltersContainer.innerHTML = '';
+        resetSelection();
+        updateBadgeOptions();
+    };
+
     // adiciona filtro selecionado
     addFilterBtn.addEventListener('click', () => {
         if (!currentSelectedBadge) {
@@ -174,31 +201,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // limpar todos os filtros
-    const clearFilters = () => {
-        nameInput.value = '';
-        addedFiltersContainer.innerHTML = '';
-        resetSelection();
-        updateBadgeOptions();
-    };
 
-    clearBtn.addEventListener('click', clearFilters);
 
-    // ação do botão pesquisar - falta adicionar a lógica de pesquisa real
+    // Event Listeners:
+
+    searchInput.addEventListener('input', aplicarFiltro); // filtra em tempo real enquanto o usuário digita
+
+    clearBtn.addEventListener('click', clearFilters); // Limpa filtros
+
+    // clique no botão pesquisar
     searchBtn.addEventListener('click', () => {
-        const filters = {
-            name: nameInput.value.trim(),
-            skills: []
-        };
-        document.querySelectorAll('.added-filter-row').forEach(row => {
-            if (row.dataset.badge && row.dataset.level) {
-                filters.skills.push({
-                    badge: row.dataset.badge,
-                    level: row.dataset.level
-                });
-            }
-        });
-        console.log('Filtros para pesquisar:', filters);
+        aplicarFiltro();
+
+        filterModal.hide();
     });
 
     populateDropdowns();

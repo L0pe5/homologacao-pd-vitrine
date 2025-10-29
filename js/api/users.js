@@ -27,6 +27,8 @@ async function adicionarCard(pessoa) {
     const badges = dadosUsuario ? dadosUsuario.badges : '-';
     const formacoes = dadosUsuario ? dadosUsuario.formacoes : '-';
 
+    const divMae = document.querySelector('.div-cards-index');
+
     const badgesHTML = Object.entries(badges)
         .map(([linguagem, dados]) => `
             <img src="./../imagens/badges/${linguagem}.svg"
@@ -37,10 +39,9 @@ async function adicionarCard(pessoa) {
         .join('');
 
 
-    const divMae = document.querySelector('.div-cards-index');
-
     divMae.innerHTML += `
         <article
+            data-name="${usuarioBasico.name}"
             class="col card-index d-flex flex-column justify-content-center align-items-center m-0 p-0 position-relative">
             <div class="card-index__retangulo-amarelo position-absolute top-0 start-0 position-relative">
                 <figure class="m-0">
@@ -92,6 +93,7 @@ async function adicionarCard(pessoa) {
 async function inicializar() {
     await carregarDados(); // Aguarda o carregamento do badges.json
     colaboradores.forEach(colaborador => adicionarCard(colaborador));
+    
 
     // Evento de redirecionamento
     document.querySelector('.div-cards-index').addEventListener('click', (event) => {
