@@ -103,7 +103,28 @@ async function preencherCardPerfil(usuario, resp, sup, badges, form) {
     //console.log(badges)
     if (cardBadges) {
         const badgesHTML = Object.entries(badges)
-            .map(([linguagem, dados]) => `
+            .map(([linguagem, dados]) => {
+                const nivel = dados.nivel;
+                let estrelasHTML = '';
+                for (let i = 0; i < 5; i++) {
+                    if (i <= nivel) {
+                        //preenchida
+                        estrelasHTML += `
+                        <figure><img src="imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                            <figcaption></figcaption>
+                        </figure>
+                    `;
+                    } else {
+                        //vazia
+                        estrelasHTML += `
+                        <figure><img src="imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                            <figcaption></figcaption>
+                        </figure>
+                    `;
+                    }
+                }
+
+                return `
                 <div class="badges">
 
                     <figure class="badge-house"><img class="badge-icon" src="imagens/badges/${linguagem}.svg" alt="">
@@ -113,29 +134,14 @@ async function preencherCardPerfil(usuario, resp, sup, badges, form) {
                     <p class="exp-texto">${dados.descricao}</p>
 
                     <div class="estrelas-badges">
-
-                        <figure><img src="imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
-                            <figcaption></figcaption>
-                        </figure>
-                        <figure><img src="imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
-                            <figcaption></figcaption>
-                        </figure>
-                        <figure><img src="imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
-                            <figcaption></figcaption>
-                        </figure>
-                        <figure><img src="imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
-                            <figcaption></figcaption>
-                        </figure>
-                        <figure><img src="imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
-                            <figcaption></figcaption>
-                        </figure>
-
+                        ${estrelasHTML}
                     </div>
 
                 </div>
-            `)
+            `;
+            })
             .join('');
-        realCardBadges.innerHTML = badgesHTML
+        realCardBadges.innerHTML = badgesHTML;
     }
 
 
