@@ -202,3 +202,12 @@ async function pegaConteudoRawReadme(projeto) {
         return null;
     }
 }
+
+//para ler o json
+async function lerInfos() {
+    const response = await fetch('./info.json');
+    if (!response.ok) {
+        throw new Error('Erro ao carregar badges.json');
+    }
+    return await response.json();
+}

@@ -79,6 +79,9 @@ async function preencherCardPerfil(usuario) {
     const bioCompletaEl = document.querySelector('.caixa-quem-sou-eu'); // "Quem sou eu"
     const linkGitlabEl = document.querySelector('.link-gitlab');
     const linkLinkedinEl = document.querySelector('.link-linkedin');
+    //carregados pelo JSON
+    const cardFormacoes = document.getElementById('formacao-desktop');
+    const cardBadges = document.querySelector('.badges-section')
 
     if (nomeEl) nomeEl.textContent = usuario.name || 'Nome não informado';
     if (fotoEl) fotoEl.src = usuario.avatar_url;
@@ -99,11 +102,12 @@ async function preencherCardPerfil(usuario) {
 // função principal que executa quando a página de perfil carrega
 document.addEventListener('DOMContentLoaded', async () => {
     const username = localStorage.getItem('perfilUsername');
+    let dadosUsuario = localStorage.getItem('dadosUsuario');
     if (!username) {
         document.body.innerHTML = '<h1>Usuário não especificado.</h1>';
         return;
     }
-
+    console.log(dadosUsuario)
     // Usa a função de utils.js
     const usuarioBasico = await pegaUsuarioPeloUsername(username);
     if (!usuarioBasico) {
