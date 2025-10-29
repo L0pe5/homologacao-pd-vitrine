@@ -1,4 +1,9 @@
 // renderiza o card HTML de um projeto.
+let informacoes = []
+async function carregarDados() {
+    informacoes = await lerInfos()
+}
+
 async function renderizarCardProjeto(projeto) {
     // 1. Encontra a URL da imagem 'card.*' usando a nova função de utils.js
     const cardImageUrlRaw = await encontraUrlImagemCardProjeto(projeto.id, projeto.path_with_namespace);
@@ -53,7 +58,7 @@ async function renderizarCardProjeto(projeto) {
 }
 
 // Preenche o card principal do perfil
-async function preencherCardPerfil(usuario) {
+async function preencherCardPerfil(usuario, resp, sup, badges, form) {
     if (!usuario) return;
     const projetoss = await pegaProjetosDoUsuario(usuario.id)
     const resultado = projetoss.find((proj) => {
@@ -82,6 +87,63 @@ async function preencherCardPerfil(usuario) {
     //carregados pelo JSON
     const cardFormacoes = document.getElementById('formacao-desktop');
     const cardBadges = document.querySelector('.badges-section')
+    const realCardBadges = document.querySelector('.container-badges')
+    const resp_tec = document.querySelector('.nome-lider-resp');
+    const superv = document.querySelector('.nome-lider-sup')
+
+    if (Array.isArray(form)) {
+        cardFormacoes.innerHTML = form.map(f => `<li>${f}</li>`).join('');
+    } else if (typeof form === 'string') {
+        // Caso venha em formato "Formação 1, Formação 2"
+        cardFormacoes.innerHTML = form.split(',').map(f => `<li>${f.trim()}</li>`).join('');
+    } else {
+        cardFormacoes.innerHTML = '<li>Sem formações registradas.</li>';
+    }
+
+    //console.log(badges)
+    if (cardBadges) {
+        const badgesHTML = Object.entries(badges)
+            .map(([linguagem, dados]) => `
+                <div class="badges">
+
+                    <figure class="badge-house"><img class="badge-icon" src="imagens/badges/${linguagem}.svg" alt="">
+                        <figcaption></figcaption>
+                    </figure>
+
+                    <p class="exp-texto">${dados.descricao}</p>
+
+                    <div class="estrelas-badges">
+
+                        <figure><img src="imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                            <figcaption></figcaption>
+                        </figure>
+                        <figure><img src="imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                            <figcaption></figcaption>
+                        </figure>
+                        <figure><img src="imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                            <figcaption></figcaption>
+                        </figure>
+                        <figure><img src="imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                            <figcaption></figcaption>
+                        </figure>
+                        <figure><img src="imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                            <figcaption></figcaption>
+                        </figure>
+
+                    </div>
+
+                </div>
+            `)
+            .join('');
+        realCardBadges.innerHTML = badgesHTML
+    }
+
+
+
+    //if (cardFormacoes) cardFormacoes.innerHTML = form;
+    //if (cardBadges) cardBadges.innerHTML = badges;
+    if (resp_tec) resp_tec.innerHTML = resp;
+    if (superv) superv.innerHTML = sup;
 
     if (nomeEl) nomeEl.textContent = usuario.name || 'Nome não informado';
     if (fotoEl) fotoEl.src = usuario.avatar_url;
@@ -102,11 +164,21 @@ async function preencherCardPerfil(usuario) {
 // função principal que executa quando a página de perfil carrega
 document.addEventListener('DOMContentLoaded', async () => {
     const username = localStorage.getItem('perfilUsername');
-    let dadosUsuario = localStorage.getItem('dadosUsuario');
+
+
     if (!username) {
         document.body.innerHTML = '<h1>Usuário não especificado.</h1>';
         return;
     }
+
+    await carregarDados();
+
+    let dadosUsuario = informacoes.find(usuario => usuario.nome === username);
+    const responsavel = dadosUsuario ? dadosUsuario.responsavel_tecnico : '-';
+    const supervisor = dadosUsuario ? dadosUsuario.supervisor : '-';
+    const badges = dadosUsuario ? dadosUsuario.badges : '-';
+    const formacoes = dadosUsuario ? dadosUsuario.formacoes : '-';
+
     console.log(dadosUsuario)
     // Usa a função de utils.js
     const usuarioBasico = await pegaUsuarioPeloUsername(username);
@@ -124,7 +196,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     ]);
 
     // Preenche o card de perfil (agora é async por causa do avatar)
-    await preencherCardPerfil(usuarioDetalhado);
+    await preencherCardPerfil(usuarioDetalhado, responsavel, supervisor, badges, formacoes);
 
     // Renderiza os projetos
     const containerMeusProjetos = document.querySelector('.container-meus-projetos .container-card-tela-perfil');

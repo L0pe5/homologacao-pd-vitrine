@@ -99,7 +99,7 @@ async function inicializar() {
         if (targetButton) {
             const username = targetButton.dataset.username;
             localStorage.setItem('perfilUsername', username);
-            localStorage.setItem('dadosUsuario', dadosUsuario)
+            //localStorage.setItem('dadosUsuario', JSON.stringify(dadosUsuario));
             window.location.href = 'perfil.html';
         }
     });
