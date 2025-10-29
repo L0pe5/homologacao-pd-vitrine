@@ -10,7 +10,7 @@
                 "nivel": 4,
                 "descricao": "Avançado"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
@@ -37,7 +37,7 @@
                 "nivel": 2,
                 "descricao": "Básico"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
@@ -68,7 +68,7 @@
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 1,
                 "descricao": "Iniciante"
             }
@@ -91,7 +91,7 @@
                 "nivel": 4,
                 "descricao": "Avançado"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 2,
                 "descricao": "Básico"
             },
@@ -126,7 +126,7 @@
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 2,
                 "descricao": "Básico"
             },
@@ -153,7 +153,7 @@
                 "nivel": 1,
                 "descricao": "Iniciante"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 2,
                 "descricao": "Básico"
             },
@@ -184,7 +184,7 @@
                 "nivel": 1,
                 "descricao": "Iniciante"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 2,
                 "descricao": "Básico"
             },
@@ -215,7 +215,7 @@
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 5,
                 "descricao": "Especialista"
             }
@@ -238,7 +238,7 @@
                 "nivel": 4,
                 "descricao": "Avançado"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
@@ -273,7 +273,7 @@
                 "nivel": 2,
                 "descricao": "Básico"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
@@ -300,7 +300,7 @@
                 "nivel": 5,
                 "descricao": "Especialista"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 4,
                 "descricao": "Avançado"
             },
@@ -335,7 +335,7 @@
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 2,
                 "descricao": "Básico"
             },
@@ -366,7 +366,7 @@
                 "nivel": 1,
                 "descricao": "Iniciante"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 4,
                 "descricao": "Avançado"
             },
@@ -393,7 +393,7 @@
                 "nivel": 5,
                 "descricao": "Especialista"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 4,
                 "descricao": "Avançado"
             }
@@ -416,7 +416,7 @@
                 "nivel": 2,
                 "descricao": "Básico"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
@@ -451,7 +451,7 @@
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 2,
                 "descricao": "Básico"
             },
@@ -478,7 +478,7 @@
                 "nivel": 4,
                 "descricao": "Avançado"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 1,
                 "descricao": "Iniciante"
             }
@@ -501,7 +501,7 @@
                 "nivel": 2,
                 "descricao": "Básico"
             },
-            "Javascript": {
+            "javascript": {
                 "nivel": 5,
                 "descricao": "Especialista"
             },
