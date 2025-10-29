@@ -10,12 +10,16 @@
                 "nivel": 4,
                 "descricao": "Avançado"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 3,
                 "descricao": "Intermediário"
+            },
+            "postgresql": {
+                "nivel": 4,
+                "descricao": "Avançado"
             }
         },
-        "responsavel_tecnico": "Júlio Pereira",
+        "responsavel_tecnico": "Matheus Lopes",
         "supervisor": "Tiago Martins",
         "formacoes": [
             "Computação UFXY",
@@ -33,12 +37,20 @@
                 "nivel": 2,
                 "descricao": "Básico"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 3,
                 "descricao": "Intermediário"
+            },
+            "java": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            },
+            "postgresql": {
+                "nivel": 5,
+                "descricao": "Especialista"
             }
         },
-        "responsavel_tecnico": "Júlio Pereira",
+        "responsavel_tecnico": "Matheus Lopes",
         "supervisor": "Tiago Martins",
         "formacoes": [
             "Computação UFXY",
@@ -56,12 +68,12 @@
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 1,
                 "descricao": "Iniciante"
             }
         },
-        "responsavel_tecnico": "Júlio Pereira",
+        "responsavel_tecnico": "Matheus Lopes",
         "supervisor": "Tiago Martins",
         "formacoes": [
             "Computação UFXY",
@@ -79,12 +91,24 @@
                 "nivel": 4,
                 "descricao": "Avançado"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 2,
                 "descricao": "Básico"
+            },
+            "java": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            },
+            "postgresql": {
+                "nivel": 2,
+                "descricao": "Básico"
+            },
+            "figma": {
+                "nivel": 5,
+                "descricao": "Especialista"
             }
         },
-        "responsavel_tecnico": "Júlio Pereira",
+        "responsavel_tecnico": "Matheus Lopes",
         "supervisor": "Tiago Martins",
         "formacoes": [
             "Computação UFXY",
@@ -102,12 +126,16 @@
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
-            "js": {
+            "Javascript": {
+                "nivel": 2,
+                "descricao": "Básico"
+            },
+            "figma": {
                 "nivel": 2,
                 "descricao": "Básico"
             }
         },
-        "responsavel_tecnico": "Júlio Pereira",
+        "responsavel_tecnico": "Matheus Lopes",
         "supervisor": "Tiago Martins",
         "formacoes": [
             "Computação UFXY",
@@ -125,9 +153,17 @@
                 "nivel": 4,
                 "descricao": "Avançado"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 5,
                 "descricao": "Especialista"
+            },
+            "java": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "figma": {
+                "nivel": 4,
+                "descricao": "Avançado"
             }
         },
         "responsavel_tecnico": "Júlio Pereira",
@@ -148,9 +184,17 @@
                 "nivel": 1,
                 "descricao": "Iniciante"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 2,
                 "descricao": "Básico"
+            },
+            "postgresql": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            },
+            "figma": {
+                "nivel": 1,
+                "descricao": "Iniciante"
             }
         },
         "responsavel_tecnico": "Júlio Pereira",
@@ -171,7 +215,7 @@
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 5,
                 "descricao": "Especialista"
             }
@@ -194,7 +238,19 @@
                 "nivel": 4,
                 "descricao": "Avançado"
             },
-            "js": {
+            "Javascript": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            },
+            "java": {
+                "nivel": 1,
+                "descricao": "Iniciante"
+            },
+            "postgresql": {
+                "nivel": 4,
+                "descricao": "Avançado"
+            },
+            "figma": {
                 "nivel": 3,
                 "descricao": "Intermediário"
             }
@@ -217,9 +273,13 @@
                 "nivel": 2,
                 "descricao": "Básico"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 3,
                 "descricao": "Intermediário"
+            },
+            "java": {
+                "nivel": 2,
+                "descricao": "Básico"
             }
         },
         "responsavel_tecnico": "Júlio Pereira",
@@ -240,9 +300,21 @@
                 "nivel": 5,
                 "descricao": "Especialista"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 4,
                 "descricao": "Avançado"
+            },
+            "java": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "postgresql": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "figma": {
+                "nivel": 5,
+                "descricao": "Especialista"
             }
         },
         "responsavel_tecnico": "Júlio Pereira",
@@ -263,7 +335,15 @@
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
-            "js": {
+            "Javascript": {
+                "nivel": 2,
+                "descricao": "Básico"
+            },
+            "java": {
+                "nivel": 3,
+                "descricao": "Intermediário"
+            },
+            "figma": {
                 "nivel": 2,
                 "descricao": "Básico"
             }
@@ -286,9 +366,13 @@
                 "nivel": 1,
                 "descricao": "Iniciante"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 4,
                 "descricao": "Avançado"
+            },
+            "postgresql": {
+                "nivel": 1,
+                "descricao": "Iniciante"
             }
         },
         "responsavel_tecnico": "Júlio Pereira",
@@ -309,7 +393,7 @@
                 "nivel": 5,
                 "descricao": "Especialista"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 4,
                 "descricao": "Avançado"
             }
@@ -332,9 +416,21 @@
                 "nivel": 2,
                 "descricao": "Básico"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 3,
                 "descricao": "Intermediário"
+            },
+            "java": {
+                "nivel": 2,
+                "descricao": "Básico"
+            },
+            "postgresql": {
+                "nivel": 1,
+                "descricao": "Iniciante"
+            },
+            "figma": {
+                "nivel": 2,
+                "descricao": "Básico"
             }
         },
         "responsavel_tecnico": "Júlio Pereira",
@@ -355,9 +451,13 @@
                 "nivel": 3,
                 "descricao": "Intermediário"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 2,
                 "descricao": "Básico"
+            },
+            "java": {
+                "nivel": 4,
+                "descricao": "Avançado"
             }
         },
         "responsavel_tecnico": "Júlio Pereira",
@@ -378,7 +478,7 @@
                 "nivel": 4,
                 "descricao": "Avançado"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 1,
                 "descricao": "Iniciante"
             }
@@ -401,9 +501,17 @@
                 "nivel": 2,
                 "descricao": "Básico"
             },
-            "js": {
+            "Javascript": {
                 "nivel": 5,
                 "descricao": "Especialista"
+            },
+            "postgresql": {
+                "nivel": 2,
+                "descricao": "Básico"
+            },
+            "figma": {
+                "nivel": 4,
+                "descricao": "Avançado"
             }
         },
         "responsavel_tecnico": "Júlio Pereira",

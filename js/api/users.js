@@ -1,6 +1,12 @@
 const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'caio.caldeira', 'geovanna.alves', 'matheus.lopes', 'kaue.santos', 'felipe.deoliveira', 'daniel.berbert', 'lucas.alves', 'leandro.ribeiro', 'matheus.casagrande', 'paulo.martins', 'bruno.luz', 'arthur.othero', 'thalisson.santos', 'marcos.alexandria', 'joao.seixas'];
 //const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'geovanna.alves', 'matheus.lopes'];
 
+let informacoes = [];
+
+async function carregarDados() {
+    informacoes = await lerInfos()
+}
+
 // monta e adiciona o card de um colaborador na página.
 async function adicionarCard(pessoa) {
     // Usa a função de utils.js
@@ -14,12 +20,25 @@ async function adicionarCard(pessoa) {
     const usuarioDetalhado = await pegaDetalhesDoUsuario(usuarioBasico.id);
     const bio = usuarioDetalhado ? usuarioDetalhado.bio : '';
     const avatarUrl = usuarioBasico.avatar_url;
-    //console.log(avatarUrl)
+
+    const dadosUsuario = informacoes.find(usuario => usuario.nome === pessoa)
+    const responsavel = dadosUsuario ? dadosUsuario.responsavel_tecnico : '-';
+    const supervisor = dadosUsuario ? dadosUsuario.supervisor : '-';
+    const badges = dadosUsuario ? dadosUsuario.badges : '-';
+    const formacoes = dadosUsuario ? dadosUsuario.formacoes : '-';
+
+    const badgesHTML = Object.entries(badges)
+        .map(([linguagem, dados]) => `
+            <img src="./../imagens/badges/${linguagem}.svg"
+                alt="${linguagem}"
+                title="${dados.descricao} (Nível ${dados.nivel})"
+                class="card-index__badges">
+        `)
+        .join('');
+
+
     const divMae = document.querySelector('.div-cards-index');
 
-    //pegando supervisor e responsável
-    //const nome_resp = responsavel_tecnico(usuarioBasico.username)
-    //const supervisor = supervisor(usuarioBasico.username)
     divMae.innerHTML += `
         <article
             class="col card-index d-flex flex-column justify-content-center align-items-center m-0 p-0 position-relative">
@@ -39,16 +58,7 @@ async function adicionarCard(pessoa) {
                     <p class="card-index__descricao text-center lh-sm m-0 p-0">${bio || ''}</p>
                 </div>
                 <div class="w-100 d-flex justify-content-center align-items-center flex-wrap gap-1 gap-md-2">
-                    <img src="./../imagens/badges/HTML.svg" alt="HTML" class="card-index__badges">
-                    <img src="./../imagens/badges/CSS.svg" alt="CSS" class="card-index__badges">
-                    <img src="./../imagens/badges/Javascript.svg" alt="Javascript" class="card-index__badges">
-                    <img src="./../imagens/badges/PostgreSQL.svg" alt="PostgreSQL" class="card-index__badges">
-                    <img src="./../imagens/badges/Python.svg" alt="python" class="card-index__badges">
-                    <img src="./../imagens/badges/C++.svg" alt="C++" class="card-index__badges">
-                    <img src="./../imagens/badges/Bootstrap.svg" alt="Bootstrap" class="card-index__badges">
-                    <img src="./../imagens/badges/Figma.svg" alt="Figma" class="card-index__badges">
-                    <img src="./../imagens/badges/Github.svg" alt="Github" class="card-index__badges">
-                    <img src="./../imagens/badges/Gitlab.svg" alt="Gitlab" class="card-index__badges">
+                    ${badgesHTML}
                 </div>
                 <div class="w-100 d-flex justify-content-evenly align-items-center m-0 p-0">
                     <div class="card-index__coordenadores d-flex justify-content-center align-items-center gap-1">
@@ -56,14 +66,14 @@ async function adicionarCard(pessoa) {
                             class="card-index__icones">
                         <div>
                             <h2 class="fw-bold">Responsável técnico:</h2>
-                            <p>Júlio Pereira</p>
+                            <p>${responsavel}</p>
                         </div>
                     </div>
                     <div class="card-index__coordenadores d-flex justify-content-center align-items-center gap-1">
                         <img src="/../imagens/icones/Supervisor.svg" alt="icone supervisor" class="card-index__icones">
                         <div>
                             <h2 class="fw-bold">Supervisor:</h2>
-                            <p>Tiago Martins</p>
+                            <p>${supervisor}</p>
                         </div>
                     </div>
                 </div>
@@ -78,18 +88,20 @@ async function adicionarCard(pessoa) {
     `;
 }
 
-// Inicia a criação dos cards
-colaboradores.forEach(colaborador => adicionarCard(colaborador));
+// Inicializa tudo
+async function inicializar() {
+    await carregarDados(); // Aguarda o carregamento do badges.json
+    colaboradores.forEach(colaborador => adicionarCard(colaborador));
 
-// Adiciona o listener para os botões "Ver Perfil"
-document.querySelector('.div-cards-index').addEventListener('click', (event) => {
-    const targetButton = event.target.closest('.card-index__btn-ver-mais');
+    // Evento de redirecionamento
+    document.querySelector('.div-cards-index').addEventListener('click', (event) => {
+        const targetButton = event.target.closest('.card-index__btn-ver-mais');
+        if (targetButton) {
+            const username = targetButton.dataset.username;
+            localStorage.setItem('perfilUsername', username);
+            window.location.href = 'perfil.html';
+        }
+    });
+}
 
-    if (targetButton) {
-        const username = targetButton.dataset.username;
-
-        localStorage.setItem('perfilUsername', username);
-
-        window.location.href = 'perfil.html';
-    }
-});
+inicializar();
