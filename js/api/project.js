@@ -82,16 +82,32 @@ document.addEventListener('DOMContentLoaded', async function () {
         // Preenche Colaboradores
         const collabList = infoContainer.querySelector('.collaborators-list');
         if (collabList) {
+            console.log(colaboradores);
+            console.log(collabList);
+
             if (colaboradores.length > 0) {
-                // Carrega es privados em paralelo
+                // Carrega os avatares e cria os elementos HTML dos colaboradores
                 const collabHtmlPromises = colaboradores.map(async (user) => {
-                    return `<li class="collaborator-item">
+                    return `<li class="collaborator-item" data-username="${user.username}" style="cursor: pointer;">
                                 <img src="${user.avatar_url}" alt="Foto de ${user.name}" class="profile-pic">
                                 <span class="collaborator-name">${user.name}</span>
                             </li>`;
                 });
                 const collabHtmls = await Promise.all(collabHtmlPromises);
                 collabList.innerHTML = collabHtmls.join('');
+
+
+                collabList.addEventListener('click', (event) => { // event listener para links dos colaboradores
+                    const clickedItem = event.target.closest('.collaborator-item');
+                    
+                    if (clickedItem) {
+                        const username = clickedItem.dataset.username;
+                        if (username) {
+                            localStorage.setItem('perfilUsername', username);
+                            window.location.href = 'perfil.html';
+                        }
+                    }
+                });
             } else {
                 collabList.innerHTML = '<li>Nenhum colaborador encontrado.</li>';
             }
