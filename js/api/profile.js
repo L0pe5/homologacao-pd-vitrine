@@ -87,7 +87,6 @@ async function preencherCardPerfil(usuario, resp, sup, badges, form) {
     //carregados pelo JSON
     const cardFormacoes = document.getElementById('formacao-desktop');
     const cardBadges = document.querySelector('.badges-section')
-    const realCardBadges = document.querySelector('.container-badges')
     const resp_tec = document.querySelector('.nome-lider-resp');
     const superv = document.querySelector('.nome-lider-sup')
 
@@ -141,7 +140,7 @@ async function preencherCardPerfil(usuario, resp, sup, badges, form) {
             `;
             })
             .join('');
-        realCardBadges.innerHTML = badgesHTML;
+        cardBadges.innerHTML = badgesHTML;
     }
 
 
