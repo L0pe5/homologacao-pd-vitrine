@@ -2207,7 +2207,6 @@ figure {
 #carrossel-mobile .carousel-control-prev-icon,
 #carrossel-mobile .carousel-control-next-icon {
     width: 30px;
-    height: 15px;
 }
 
 @media (min-width: 500px) {
@@ -2789,7 +2788,6 @@ figure {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 3rem;
     background-color: black;
     border-radius: 50%;
     background-repeat: no-repeat;
