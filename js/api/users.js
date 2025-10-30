@@ -1,4 +1,4 @@
-const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'caio.caldeira', 'geovanna.alves', 'matheus.lopes', 'kaue.santos', 'felipe.deoliveira', 'daniel.berbert', 'lucas.alves', 'leandro.ribeiro', 'matheus.casagrande', 'paulo.martins', 'bruno.luz', 'arthur.othero', 'thalisson.santos', 'marcos.alexandria', 'joao.seixas'];
+const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'caio.caldeira', 'geovanna.alves', 'Matheus.lopes', 'kaue.santos', 'felipe.deoliveira', 'daniel.berbert', 'lucas.alves', 'leandro.ribeiro', 'matheus.casagrande', 'paulo.martins', 'bruno.luz', 'arthur.othero', 'thalisson.santos', 'marcos.alexandria', 'joao.seixas'];
 //const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'geovanna.alves', 'matheus.lopes'];
 
 let informacoes = [];
@@ -22,6 +22,7 @@ async function adicionarCard(pessoa) {
     const avatarUrl = usuarioBasico.avatar_url;
 
     const dadosUsuario = informacoes.find(usuario => usuario.nome === pessoa)
+    console.log(dadosUsuario.nome)
     const responsavel = dadosUsuario ? dadosUsuario.responsavel_tecnico : '-';
     const supervisor = dadosUsuario ? dadosUsuario.supervisor : '-';
     const badges = dadosUsuario ? dadosUsuario.badges : '-';
@@ -93,7 +94,7 @@ async function adicionarCard(pessoa) {
 async function inicializar() {
     await carregarDados(); // Aguarda o carregamento do badges.json
     colaboradores.forEach(colaborador => adicionarCard(colaborador));
-    
+
 
     // Evento de redirecionamento
     document.querySelector('.div-cards-index').addEventListener('click', (event) => {
