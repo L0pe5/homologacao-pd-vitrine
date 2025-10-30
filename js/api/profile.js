@@ -77,6 +77,25 @@ async function preencherCardPerfil(usuario, resp, sup, badges, form) {
         console.warn("User sem README")
     }
 
+    if (!usuario) return;
+    const projetos = await pegaProjetosDoUsuario(usuario.id)
+    const result = projetos.find((proj) => {
+        return proj.name === usuario.username + '.formacoes'
+    })
+
+    let readmeFormacoes = null;
+    let readmeFormacoes2 = 'Nenhum README encontrado no GitLab do usuário'
+    try {
+        readmeFormacoes = await pegaConteudoRawReadme(result);
+        if (readmeFormacoes) {
+            readmeFormacoes2 = marked.parse(readmeFormacoes);
+        }
+    }
+    catch (error) {
+        console.warn("User sem README")
+    }
+
+
     // Usa a função de utils.js para carregar o avatar principal
     const nomeEl = document.querySelector('.nome');
     const fotoEl = document.querySelector('.foto-usuario');
@@ -90,14 +109,21 @@ async function preencherCardPerfil(usuario, resp, sup, badges, form) {
     const resp_tec = document.querySelector('.nome-lider-resp');
     const superv = document.querySelector('.nome-lider-sup')
 
-    if (Array.isArray(form)) {
-        cardFormacoes.innerHTML = form.map(f => `<li>${f}</li>`).join('');
-    } else if (typeof form === 'string') {
-        // Caso venha em formato "Formação 1, Formação 2"
-        cardFormacoes.innerHTML = form.split(',').map(f => `<li>${f.trim()}</li>`).join('');
-    } else {
-        cardFormacoes.innerHTML = '<li>Sem formações registradas.</li>';
+    if (cardFormacoes) {
+        cardFormacoes.innerHTML = readmeFormacoes2
     }
+    else {
+        cardFormacoes.innerHTML = "README DE FORMAÇÕES NÃO ENCONTRADO"
+    }
+
+    // if (Array.isArray(form)) {
+    //     cardFormacoes.innerHTML = form.map(f => `<li>${f}</li>`).join('');
+    // } else if (typeof form === 'string') {
+    //     // Caso venha em formato "Formação 1, Formação 2"
+    //     cardFormacoes.innerHTML = form.split(',').map(f => `<li>${f.trim()}</li>`).join('');
+    // } else {
+    //     cardFormacoes.innerHTML = '<li>Sem formações registradas.</li>';
+    // }
 
     //console.log(badges)
     if (cardBadges) {
