@@ -34,14 +34,38 @@ async function pegaDetalhesDoUsuario(id) {
 
 // pega todos os projetos (próprios e compartilhados) de um usuário pelo ID.
 async function pegaProjetosDoUsuario(userId) {
-try {
-    const response = await fetch(`${gitlabApiUrl}/users/${userId}/projects`, { headers: authHeaders });
-    if (!response.ok) throw new Error(`Projetos do usuário ${userId} não encontrados ou erro ${response.status}`);
-    return await response.json();
-} catch (error) {
-    console.error("Erro ao buscar projetos:", error);
-    return []; // Retorna um array vazio em caso de erro
-}
+    try {
+        const promiseProjetosProprios = fetch(`${gitlabApiUrl}/users/${userId}/projects`, { headers: authHeaders });
+        const promiseProjetosContribuidos = fetch(`${gitlabApiUrl}/users/${userId}/contributed_projects`, { headers: authHeaders });
+
+        const [resProprios, resContribuidos] = await Promise.all([
+            promiseProjetosProprios,
+            promiseProjetosContribuidos
+        ]);
+
+        if (!resProprios.ok) throw new Error(`Projetos próprios do usuário ${userId} não encontrados ou erro ${resProprios.status}`);
+        if (!resContribuidos.ok) throw new Error(`Projetos contribuídos do usuário ${userId} não encontrados ou erro ${resContribuidos.status}`);
+        
+        const projetosProprios = await resProprios.json();
+        const projetosContribuidos = await resContribuidos.json();
+
+        // junta as duas listas e remove duplicatas, usando Map para garantir que não haja IDs duplicados
+        const todosProjetosMap = new Map();
+        
+        projetosProprios.forEach(projeto => {
+            todosProjetosMap.set(projeto.id, projeto);
+        });
+        
+        projetosContribuidos.forEach(projeto => {
+            todosProjetosMap.set(projeto.id, projeto); // usando Set para, se já existir, será sobrescrito
+        });
+
+        return Array.from(todosProjetosMap.values());
+
+    } catch (error) {
+        console.error("Erro ao buscar todos os projetos do usuário:", error);
+        return [];
+    }
 }
 
 // pega detalhes de um projeto específico pelo ID.
@@ -99,7 +123,7 @@ async function listaImagensDoRepositorio(id) {
         // Garante que só retorna arquivos, não subpastas
         return files.filter(file => file.type === 'blob');
     } catch (error) {
-        console.error("Erro ao listar imagens do repositório:", error);
+        console.warn("Não foi possível listar as imagens do repositório:", error);
         return [];
     }
 }

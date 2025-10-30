@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             pegaColaboradoresDoProjeto(projetoId)
         ]);
 
-        //console.log(colaboradores)
         projectImages = await Promise.all(imagensUrls.map(url => carregarImagemPrivada(url)));
 
         // preenche Título e Descrição (do Readme)
@@ -39,7 +38,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         // Usa o README como descrição, se existir; senão, usa a descrição do projeto
         const html = marked.parse(readmeContent); //para formatar readme
         if (descEl) descEl.innerHTML = html || projeto.description || 'Sem descrição.';
-        //console.log("Marked está definido?", typeof marked);
 
 
         // Preenche Badges
@@ -82,9 +80,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         // Preenche Colaboradores
         const collabList = infoContainer.querySelector('.collaborators-list');
         if (collabList) {
-            console.log(colaboradores);
-            console.log(collabList);
-
             if (colaboradores.length > 0) {
                 // Carrega os avatares e cria os elementos HTML dos colaboradores
                 const collabHtmlPromises = colaboradores.map(async (user) => {
