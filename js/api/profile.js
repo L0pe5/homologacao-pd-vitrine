@@ -127,11 +127,12 @@ async function preencherCardPerfil(usuario, resp, sup, badges, form) {
 
     //console.log(badges)
     if (cardBadges) {
+        cardBadges.innerHTML = '';
         const badgesHTML = Object.entries(badges)
             .map(([linguagem, dados]) => {
                 const nivel = dados.nivel;
                 let estrelasHTML = '';
-                for (let i = 0; i < 5; i++) {
+                for (let i = 1; i <= 5; i++) {
                     if (i <= nivel) {
                         //preenchida
                         estrelasHTML += `

@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const starsHTML = `${starFilledSVG.repeat(level.stars)}${starEmptySVG.repeat(5 - level.stars)}`;
         return `
             <div>${starsHTML}</div>
-            <span>${level.name}</span>
+            <span class="level-escrito">${level.name}</span>
         `;
     };
 
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     // limpar todos os filtros
     const clearFilters = () => {
         nameInput.value = '';
@@ -218,3 +218,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
     populateDropdowns();
 });
+
+async function obterFiltrosSelecionados() {
+    const badgesAdicionadas = document.getElementById('added-filters-container');
+    //dentro de badges adicionadas entra na div added-filter-row. para badge entra em badge-column e
+    const vetorBadges = badgesAdicionadas.querySelectorAll('.added-filter-row')
+
+    //para linguagens
+    let vetorLinguagens = []
+    vetorBadges.forEach(badge => {
+        const novaLinguagem = badge.querySelector('.badge-column').querySelector('.badge-display').alt.toLowerCase();
+        let novoNivel = badge.querySelector('.level-column').querySelector('.level-display').querySelector('.level-escrito');
+        if (novoNivel) {
+            novoNivel = novoNivel.textContent;
+        }
+        else {
+            novoNivel = "Sem classificação";
+        }
+        vetorLinguagens.push({ linguagem: novaLinguagem, nivel: novoNivel });
+    })
+    //return vetorLinguagens
+    let informacoes = [];
+    informacoes = await lerInfos(); //puxa dados do json
+    //console.log(informacoes)
+    //se username tem badge A, B, C... adicionarCard(username)
+    const userFiltrados = informacoes.filter(usuario => { //filtrando os usuarios do json que atendem às filtragens
+        return vetorLinguagens.every(filtro => {
+            const badgeUsuario = usuario.badges[filtro.linguagem];
+            //n passa se não tiver a badge
+            if (!badgeUsuario) return false;
+            if (filtro.nivel && filtro.nivel !== "Sem classificação") {
+                return badgeUsuario.descricao === filtro.nivel; //filtragem exclusiva (n inclui niveis melhores)
+            }
+            return true;
+        })
+    })
+    //console.log(userFiltrados)
+    return userFiltrados
+}
+
+const botaoPesquisar = document.querySelector('.btn-filter-action')
+botaoPesquisar.addEventListener('click', async () => {
+    const lista = await obterFiltrosSelecionados()
+    console.log(lista)
+    const divCards = document.querySelector('.div-cards-index');
+    divCards.innerHTML = '';
+    lista.forEach(pessoa => {
+        adicionarCard(pessoa.nome)
+    })
+})
