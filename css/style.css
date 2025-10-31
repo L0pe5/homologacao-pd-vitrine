@@ -2386,6 +2386,22 @@ figure {
     margin: 0;
 }
 
+.div-dos-chefes {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.div-dos-chefes p {
+    display: flex;
+    align-items: start;
+}
+
+.div-dos-chefes h2 {
+    display: flex;
+    align-items: start;
+}
+
 /* card perfil do index: botão ver mais */
 .card-index__btn-ver-mais {
     width: 5.563rem;

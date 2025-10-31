@@ -6,7 +6,7 @@ async function carregarDados() {
 
 async function renderizarCardProjeto(projeto) {
     const badgesHtml = await criarVetorBadges(projeto.id);
-    
+
     const vetorLinks = await pegaImagensProjeto(projeto.id);
     if (vetorLinks && vetorLinks.length > 0) {
         return `
@@ -219,14 +219,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Promise.all para renderizar cards E buscar colaboradores em paralelo
     const cardsPromises = todosOsProjetos.map(async (projeto) => {
-    
+
         const [cardHtml, colaboradores] = await Promise.all([
             renderizarCardProjeto(projeto),
             pegaColaboradoresDoProjeto(projeto.id)
         ]);
 
         const collaboratorCount = colaboradores.length;
-        
+
         const isOwner = (usuarioDetalhado && projeto.namespace.kind === 'user' && projeto.namespace.name === usuarioDetalhado.name);
 
         let listType;

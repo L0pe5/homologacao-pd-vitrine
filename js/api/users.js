@@ -66,14 +66,14 @@ async function adicionarCard(pessoa) {
                     <div class="card-index__coordenadores d-flex justify-content-center align-items-center gap-1">
                         <img src="./../imagens/icones/Responsável Tecnico.svg" alt="responsável técnico"
                             class="card-index__icones">
-                        <div>
+                        <div class="div-dos-chefes">
                             <h2 class="fw-bold">Responsável técnico:</h2>
                             <p>${responsavel}</p>
                         </div>
                     </div>
                     <div class="card-index__coordenadores d-flex justify-content-center align-items-center gap-1">
                         <img src="/../imagens/icones/Supervisor.svg" alt="icone supervisor" class="card-index__icones">
-                        <div>
+                        <div class="div-dos-chefes">
                             <h2 class="fw-bold">Supervisor:</h2>
                             <p>${supervisor}</p>
                         </div>
