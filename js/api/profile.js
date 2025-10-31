@@ -5,27 +5,8 @@ async function carregarDados() {
 }
 
 async function renderizarCardProjeto(projeto) {
-    // 1. Encontra a URL da imagem 'card.*' usando a nova função de utils.js
-    const cardImageUrlRaw = await encontraUrlImagemCardProjeto(projeto.id, projeto.path_with_namespace);
-
-    // 2. Carrega a imagem 'card.*' (ou um placeholder) como blob URL
-    let imagemCardUrl;
-    if (cardImageUrlRaw) {
-        imagemCardUrl = await carregarImagemPrivada(cardImageUrlRaw);
-    } else {
-        // Se 'card.*' não for encontrada, usa o avatar do projeto ou um default
-        console.warn(`Imagem 'card.*' não encontrada no projeto ${projeto.name}. Usando avatar ou default.`);
-        imagemCardUrl = await carregarImagemPrivada(projeto.avatar_url || '/imagens/projetos/default-logo.png');
-    }
-
-    // Mapeia os "topics" (tags) do projeto para os ícones de badges
-    // const badgesHtml = (projeto.topics || []).map(topic =>
-    //     // Capitaliza nome do tópico para nome do arquivo
-    //     `<img src="/imagens/badges/${topic.charAt(0).toUpperCase() + topic.slice(1)}.svg" alt="${topic}" title="${topic}">`
-    // ).join('');
-
     const badgesHtml = await criarVetorBadges(projeto.id);
-    //console.log(badgesHtml)
+    
     const vetorLinks = await pegaImagensProjeto(projeto.id);
     if (vetorLinks && vetorLinks.length > 0) {
         return `
@@ -125,7 +106,6 @@ async function preencherCardPerfil(usuario, resp, sup, badges, form) {
     //     cardFormacoes.innerHTML = '<li>Sem formações registradas.</li>';
     // }
 
-    //console.log(badges)
     if (cardBadges) {
         cardBadges.innerHTML = '';
         const badgesHTML = Object.entries(badges)
@@ -193,6 +173,7 @@ async function preencherCardPerfil(usuario, resp, sup, badges, form) {
     }
 }
 
+
 // função principal que executa quando a página de perfil carrega
 document.addEventListener('DOMContentLoaded', async () => {
     const username = localStorage.getItem('perfilUsername');
@@ -211,7 +192,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const badges = dadosUsuario ? dadosUsuario.badges : '-';
     const formacoes = dadosUsuario ? dadosUsuario.formacoes : '-';
 
-    console.log(dadosUsuario)
     // Usa a função de utils.js
     const usuarioBasico = await pegaUsuarioPeloUsername(username);
     if (!usuarioBasico) {
@@ -220,17 +200,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const userId = usuarioBasico.id;
-
-    // Busca detalhes e projetos em paralelo, usando utils.js
+    // busca detalhes e projetos em paralelo, usando utils.js
     const [usuarioDetalhado, todosOsProjetos] = await Promise.all([
         pegaDetalhesDoUsuario(userId),
         pegaProjetosDoUsuario(userId)
     ]);
 
-    // Preenche o card de perfil (agora é async por causa do avatar)
     await preencherCardPerfil(usuarioDetalhado, responsavel, supervisor, badges, formacoes);
 
-    // Renderiza os projetos
     const containerMeusProjetos = document.querySelector('.container-meus-projetos .container-card-tela-perfil');
     const containerProjetosCompartilhados = document.querySelector('.container-projetos-compartilhados .container-card-tela-perfil');
 
@@ -240,19 +217,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     let meusProjetosCount = 0;
     let projetosCompartilhadosCount = 0;
 
-    // Usamos Promise.all para renderizar cards em paralelo (mais rápido)
+    // Promise.all para renderizar cards E buscar colaboradores em paralelo
     const cardsPromises = todosOsProjetos.map(async (projeto) => {
-        const cardHtml = await renderizarCardProjeto(projeto); // renderizar agora é async
-        return { html: cardHtml, isOwner: (usuarioDetalhado && projeto.namespace.kind === 'user' && projeto.namespace.name === usuarioDetalhado.name) };
+    
+        const [cardHtml, colaboradores] = await Promise.all([
+            renderizarCardProjeto(projeto),
+            pegaColaboradoresDoProjeto(projeto.id)
+        ]);
+
+        const collaboratorCount = colaboradores.length;
+        
+        const isOwner = (usuarioDetalhado && projeto.namespace.kind === 'user' && projeto.namespace.name === usuarioDetalhado.name);
+
+        let listType;
+        if (isOwner && collaboratorCount === 1) {
+            listType = 'individual'; // caso seja dono do projeto e único colaborador
+        } else {
+            listType = 'shared'; // caso contrário, é compartilhado
+        }
+
+        return { html: cardHtml, type: listType };
     });
 
     const renderedCards = await Promise.all(cardsPromises);
 
     renderedCards.forEach(cardData => {
-        if (cardData.isOwner) {
+        if (cardData.type === 'individual') {
             containerMeusProjetos.innerHTML += cardData.html;
             meusProjetosCount++;
-        } else {
+        } else if (cardData.type === 'shared') {
             containerProjetosCompartilhados.innerHTML += cardData.html;
             projetosCompartilhadosCount++;
         }
@@ -260,10 +253,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Adiciona mensagens caso não existam projetos
     if (meusProjetosCount === 0) {
-        containerMeusProjetos.innerHTML = '<p class="text-center p-3">Nenhum projeto próprio encontrado.</p>';
+        containerMeusProjetos.innerHTML = '';
     }
     if (projetosCompartilhadosCount === 0) {
-        containerProjetosCompartilhados.innerHTML = '<p class="text-center p-3">Nenhum projeto compartilhado encontrado.</p>';
+        containerProjetosCompartilhados.innerHTML = '';
     }
 
     // listener para salvar o ID do projeto e navegar
