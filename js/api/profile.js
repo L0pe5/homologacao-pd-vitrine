@@ -202,6 +202,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         pegaProjetosDoUsuario(userId)
     ]);
 
+    const nomeProjetoReadme = username; 
+    const nomeProjetoFormacoes = `${username}.formacoes`;
+
+    const projetosFiltrados = todosOsProjetos.filter(projeto => {
+        return projeto.name !== nomeProjetoReadme && projeto.name !== nomeProjetoFormacoes;
+    });
+
     await preencherCardPerfil(usuarioDetalhado, responsavel, supervisor, badges, formacoes);
 
     const containerMeusProjetos = document.querySelector('.container-meus-projetos .container-card-tela-perfil');
@@ -214,7 +221,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let projetosCompartilhadosCount = 0;
 
     // Promise.all para renderizar cards E buscar colaboradores em paralelo
-    const cardsPromises = todosOsProjetos.map(async (projeto) => {
+    const cardsPromises = projetosFiltrados.map(async (projeto) => {
 
         const [cardHtml, colaboradores] = await Promise.all([
             renderizarCardProjeto(projeto),
