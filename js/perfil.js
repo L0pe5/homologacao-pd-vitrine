@@ -67,3 +67,17 @@ function ajustarExp() {
 
 ajustarExp();
 window.addEventListener('resize', ajustarExp);
+
+//evento de download do curriculo
+document.querySelectorAll('.baixar-curriculo').forEach(botao => {
+    botao.addEventListener('click', () => {
+        const username = botao.dataset.username
+        const caminho = `../curriculos/${username}.pdf`
+        const link = document.createElement('a');
+        link.href = caminho;
+        link.download = `${username}.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    })
+})

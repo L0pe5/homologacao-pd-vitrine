@@ -84,6 +84,7 @@ async function preencherCardPerfil(usuario, resp, sup, badges, form) {
     const bioCompletaEl = document.querySelector('.caixa-quem-sou-eu'); // "Quem sou eu"
     const linkGitlabEl = document.querySelector('.link-gitlab');
     const linkLinkedinEl = document.querySelector('.link-linkedin');
+    const butDownload = document.querySelector('.baixar-curriculo');
     //carregados pelo JSON
     const cardFormacoes = document.getElementById('formacao-desktop');
     const cardBadges = document.querySelector('.badges-section')
@@ -97,14 +98,9 @@ async function preencherCardPerfil(usuario, resp, sup, badges, form) {
         cardFormacoes.innerHTML = "README DE FORMAÇÕES NÃO ENCONTRADO"
     }
 
-    // if (Array.isArray(form)) {
-    //     cardFormacoes.innerHTML = form.map(f => `<li>${f}</li>`).join('');
-    // } else if (typeof form === 'string') {
-    //     // Caso venha em formato "Formação 1, Formação 2"
-    //     cardFormacoes.innerHTML = form.split(',').map(f => `<li>${f.trim()}</li>`).join('');
-    // } else {
-    //     cardFormacoes.innerHTML = '<li>Sem formações registradas.</li>';
-    // }
+    //botao de download
+    butDownload.dataset.username = usuario.username
+
 
     if (cardBadges) {
         cardBadges.innerHTML = '';
