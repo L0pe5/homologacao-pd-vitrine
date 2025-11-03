@@ -261,7 +261,7 @@ async function obterFiltrosSelecionados() {
         if (!nomeDigitado) {
             userFiltrados2.push(user)
         }
-        else if (user.nome.toLowerCase().includes(nomeDigitado)) {
+        else if (user.nome_completo.toLowerCase().includes(nomeDigitado) || user.nome.toLowerCase().includes(nomeDigitado)) {
             userFiltrados2.push(user);
         }
     });

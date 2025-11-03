@@ -1,6 +1,7 @@
 [
     {
         "nome": "emanuel.bravo",
+        "nome_completo": "Emanuel Bravo",
         "badges": {
             "html": {
                 "nivel": 2,
@@ -28,6 +29,7 @@
     },
     {
         "nome": "leonardo.maciel",
+        "nome_completo": "Leonardo Maciel",
         "badges": {
             "html": {
                 "nivel": 4,
@@ -59,6 +61,7 @@
     },
     {
         "nome": "joao.tavares",
+        "nome_completo": "Joao Tavares",
         "badges": {
             "html": {
                 "nivel": 5,
@@ -82,6 +85,7 @@
     },
     {
         "nome": "caio.caldeira",
+        "nome_completo": "Caio Caldeira",
         "badges": {
             "html": {
                 "nivel": 3,
@@ -117,6 +121,7 @@
     },
     {
         "nome": "geovanna.alves",
+        "nome_completo": "Geovanna Alves",
         "badges": {
             "html": {
                 "nivel": 1,
@@ -144,6 +149,7 @@
     },
     {
         "nome": "Matheus.lopes",
+        "nome_completo": "Matheus Lopes",
         "badges": {
             "html": {
                 "nivel": 3,
@@ -175,6 +181,7 @@
     },
     {
         "nome": "kaue.santos",
+        "nome_completo": "Kaue Santos",
         "badges": {
             "html": {
                 "nivel": 3,
@@ -206,6 +213,7 @@
     },
     {
         "nome": "felipe.deoliveira",
+        "nome_completo": "Felipe Deoliveira",
         "badges": {
             "html": {
                 "nivel": 4,
@@ -229,6 +237,7 @@
     },
     {
         "nome": "daniel.berbert",
+        "nome_completo": "Daniel Berbert",
         "badges": {
             "html": {
                 "nivel": 2,
@@ -264,6 +273,7 @@
     },
     {
         "nome": "lucas.alves",
+        "nome_completo": "Lucas Alves",
         "badges": {
             "html": {
                 "nivel": 1,
@@ -291,6 +301,7 @@
     },
     {
         "nome": "leandro.ribeiro",
+        "nome_completo": "Leandro Ribeiro",
         "badges": {
             "html": {
                 "nivel": 5,
@@ -326,6 +337,7 @@
     },
     {
         "nome": "matheus.casagrande",
+        "nome_completo": "Matheus Casagrande",
         "badges": {
             "html": {
                 "nivel": 3,
@@ -357,6 +369,7 @@
     },
     {
         "nome": "paulo.martins",
+        "nome_completo": "Paulo Martins",
         "badges": {
             "html": {
                 "nivel": 2,
@@ -384,6 +397,7 @@
     },
     {
         "nome": "bruno.luz",
+        "nome_completo": "Bruno Luz",
         "badges": {
             "html": {
                 "nivel": 4,
@@ -407,6 +421,7 @@
     },
     {
         "nome": "arthur.othero",
+        "nome_completo": "Arthur Othero",
         "badges": {
             "html": {
                 "nivel": 1,
@@ -442,6 +457,7 @@
     },
     {
         "nome": "thalisson.santos",
+        "nome_completo": "Thalisson Santos",
         "badges": {
             "html": {
                 "nivel": 5,
@@ -469,6 +485,7 @@
     },
     {
         "nome": "marcos.alexandria",
+        "nome_completo": "Marcos Alexandria",
         "badges": {
             "html": {
                 "nivel": 3,
@@ -492,6 +509,7 @@
     },
     {
         "nome": "joao.seixas",
+        "nome_completo": "Joao Seixas",
         "badges": {
             "html": {
                 "nivel": 4,
