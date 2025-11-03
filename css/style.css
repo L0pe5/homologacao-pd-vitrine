@@ -1278,7 +1278,7 @@ figcaption {
     white-space: nowrap;
     /* deixar o titulo com 1 linha idenpeden */
     width: 100%;
-    max-width: 297px;
+    max-width: 243px;
     max-height: 28px;
     overflow: hidden;
 }
