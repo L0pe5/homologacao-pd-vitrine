@@ -221,6 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function obterFiltrosSelecionados() {
     const badgesAdicionadas = document.getElementById('added-filters-container');
+    let nomeDigitado = document.getElementById('filter-name').value.toLowerCase().trim();
+
     //dentro de badges adicionadas entra na div added-filter-row. para badge entra em badge-column e
     const vetorBadges = badgesAdicionadas.querySelectorAll('.added-filter-row')
 
@@ -254,7 +256,16 @@ async function obterFiltrosSelecionados() {
         })
     })
     //console.log(userFiltrados)
-    return userFiltrados
+    let userFiltrados2 = []; //filtrados por nome também
+    userFiltrados.forEach(user => {
+        if (!nomeDigitado) {
+            userFiltrados2.push(user)
+        }
+        else if (user.nome.toLowerCase().includes(nomeDigitado)) {
+            userFiltrados2.push(user);
+        }
+    });
+    return userFiltrados2
 }
 
 const botaoPesquisar = document.querySelector('.btn-filter-action')
