@@ -1021,7 +1021,8 @@ figcaption {
 
 .container-meus-projetos,
 .container-projetos-compartilhados {
-    width: 97vw;
+    width: 89.65vw;
+    max-width: 1291px;
     display: flex;
     flex-direction: column;
     justify-content: center;
