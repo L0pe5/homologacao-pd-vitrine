@@ -1,3 +1,4 @@
+// implementação do estilo de hover para desktop e click para mobile (botão de dowload)
 const botao = document.querySelector('.baixar-curriculo');
 const img = botao.querySelector('img')
 const texto = botao.querySelector('p')
@@ -38,6 +39,7 @@ botao.addEventListener('mouseleave', () => {
     }
 });
 
+//função para diminuir o conteúdo do texto 'Responsável Técnico' em telas menores
 function ajustarResponsavel() {
     const responsavel = document.querySelector('#resp-tec-texto');
     if (!responsavel) return;
@@ -49,8 +51,10 @@ function ajustarResponsavel() {
     }
 };
 ajustarResponsavel();
+//a cada reajuste nas dimensões recalcula
 window.addEventListener('resize', ajustarResponsavel);
 
+//deixa apenas as estrelas (SEM DESCRIÇÃO) em telas menores de desktop
 function ajustarExp() {
     const expTexto = document.querySelectorAll('.exp-texto');
     if (window.matchMedia('(min-width: 720px) and (max-width: 1000px)').matches) {

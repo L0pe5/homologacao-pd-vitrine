@@ -242,7 +242,6 @@ async function obterFiltrosSelecionados() {
     //return vetorLinguagens
     let informacoes = [];
     informacoes = await lerInfos(); //puxa dados do json
-    //console.log(informacoes)
     //se username tem badge A, B, C... adicionarCard(username)
     const userFiltrados = informacoes.filter(usuario => { //filtrando os usuarios do json que atendem às filtragens
         return vetorLinguagens.every(filtro => {
@@ -250,12 +249,11 @@ async function obterFiltrosSelecionados() {
             //n passa se não tiver a badge
             if (!badgeUsuario) return false;
             if (filtro.nivel && filtro.nivel !== "Sem classificação") {
-                return badgeUsuario.descricao === filtro.nivel; //filtragem exclusiva (n inclui niveis melhores)
+                return badgeUsuario.descricao === filtro.nivel; //filtragem exclusiva (não inclui niveis melhores)
             }
             return true;
         })
     })
-    //console.log(userFiltrados)
     let userFiltrados2 = []; //filtrados por nome também
     userFiltrados.forEach(user => {
         if (!nomeDigitado) {
@@ -268,6 +266,7 @@ async function obterFiltrosSelecionados() {
     return userFiltrados2
 }
 
+//evento de click que libera a filtragem
 const botaoPesquisar = document.querySelector('.btn-filter-action')
 botaoPesquisar.addEventListener('click', async () => {
     const lista = await obterFiltrosSelecionados()
