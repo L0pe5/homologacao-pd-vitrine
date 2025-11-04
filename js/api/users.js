@@ -19,7 +19,6 @@ async function adicionarCard(pessoa) {
     const avatarUrl = usuarioBasico.avatar_url;
 
     const dadosUsuario = informacoes.find(usuario => usuario.nome === pessoa)
-    console.log(dadosUsuario.nome)
     const responsavel = dadosUsuario ? dadosUsuario.responsavel_tecnico : '-';
     const supervisor = dadosUsuario ? dadosUsuario.supervisor : '-';
     const badges = dadosUsuario ? dadosUsuario.badges : '-';

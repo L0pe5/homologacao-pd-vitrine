@@ -289,7 +289,6 @@ async function obterFiltrosSelecionados() {
 const botaoPesquisar = document.querySelector('.btn-filter-action')
 botaoPesquisar.addEventListener('click', async () => {
     const lista = await obterFiltrosSelecionados()
-    console.log(lista)
     const divCards = document.querySelector('.div-cards-index');
     divCards.innerHTML = '';
     lista.forEach(pessoa => {
