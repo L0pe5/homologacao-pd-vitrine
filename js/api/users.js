@@ -1,4 +1,4 @@
-const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'caio.caldeira', 'geovanna.alves', 'Matheus.lopes', 'kaue.santos', 'felipe.deoliveira', 'daniel.berbert', 'lucas.alves', 'leandro.ribeiro', 'matheus.casagrande', 'paulo.martins', 'bruno.luz', 'arthur.othero', 'thalisson.santos', 'marcos.alexandria', 'joao.seixas'];
+const colaboradores = ['julio.pereira', 'tiago.martins', 'emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'caio.caldeira', 'geovanna.alves', 'Matheus.lopes', 'kaue.santos', 'felipe.deoliveira', 'daniel.berbert', 'lucas.alves', 'leandro.ribeiro', 'matheus.casagrande', 'paulo.martins', 'bruno.luz', 'arthur.othero', 'thalisson.santos', 'marcos.alexandria', 'joao.seixas'];
 //const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'geovanna.alves', 'matheus.lopes'];
 
 let informacoes = [];

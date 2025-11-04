@@ -538,5 +538,69 @@
             "Computação UFXY",
             "Técnico em Eletrônica pelo CEFET"
         ]
+    },
+    {
+        "nome": "tiago.martins",
+        "nome_completo": "Tiago Martins",
+        "badges": {
+            "html": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "css": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "javascript": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "postgresql": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "figma": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            }
+        },
+        "responsavel_tecnico": "-",
+        "supervisor": "-",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET"
+        ]
+    },
+    {
+        "nome": "julio.pereira",
+        "nome_completo": "Júlio Pereira",
+        "badges": {
+            "html": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "css": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "javascript": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "postgresql": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            },
+            "figma": {
+                "nivel": 5,
+                "descricao": "Especialista"
+            }
+        },
+        "responsavel_tecnico": "-",
+        "supervisor": "-",
+        "formacoes": [
+            "Computação UFXY",
+            "Técnico em Eletrônica pelo CEFET"
+        ]
     }
 ]
