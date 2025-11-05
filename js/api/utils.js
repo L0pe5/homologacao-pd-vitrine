@@ -93,6 +93,73 @@ try {
 }
 }
 
+// pega as imagens (links diretos) de um projeto específico pelo ID.
+async function pegaImagensProjeto(idProjeto) {
+    const path = 'screenshots';
+    const files = await listaImagensDoRepositorio(idProjeto);
+
+    const imagens = (files || []).filter(arquivo =>
+        arquivo.type === "blob" &&
+        /\.(png|jpg|jpeg|svg|gif|webp)$/i.test(arquivo.name)
+    );
+
+    if (imagens.length === 0) {
+        return ['/imagens/logo/projeto-sem-foto.png']
+    }
+
+    //obtém branch padrão do projeto
+    const projetoDetalhes = await pegaDetalhesDoProjeto(idProjeto);
+    const branch = (projetoDetalhes && projetoDetalhes.default_branch) ? projetoDetalhes.default_branch : 'main';
+
+    //gwra links diretos para cada imagem usando API de files/raw com ref correto
+    const linkImg = imagens.map(img =>
+        `${gitlabApiUrl}/projects/${idProjeto}/repository/files/${encodeURIComponent(img.path)}/raw?ref=${encodeURIComponent(branch)}`
+    );
+
+    return linkImg;
+}
+
+// pega o conteúdo bruto do README.md de um projeto específico pelo ID.
+async function pegaConteudoRawReadme(projeto) {
+    if (!projeto.id) {
+        console.warn("Projeto não encontrado");
+        return null;
+    }
+    const path = encodeURIComponent('READ.md');
+    const urlReadMe = `${gitlabApiUrl}/projects/${projeto.id}/repository/files/README.md/raw?ref=main`;
+
+    try {
+        const response = await fetch(urlReadMe, { headers: authHeaders })
+        if (!response.ok) {
+            console.warn(`README.md não encontrado no projeto ${projeto.name}`);
+            return null;
+        }
+        return response.text()
+    }
+    catch {
+        console.error("Outro erro ao buscar README");
+        return null;
+    }
+}
+
+// pega as linguagens usadas em um projeto específico pelo ID.
+async function pegaLinguagens(idProjeto) {
+    const response = await fetch(`${gitlabApiUrl}/projects/${idProjeto}/languages`, { headers: authHeaders });
+    return await response.json()
+}
+
+// busca os membros (colaboradores) de um projeto.
+async function pegaColaboradoresDoProjeto(id) {
+    try {
+        const response = await fetch(`${gitlabApiUrl}/projects/${id}/users`, { headers: authHeaders });
+        if (!response.ok) throw new Error(`Erro ${response.status} ao buscar colaboradores do projeto ${id}`);
+        return await response.json();
+    } catch (error) {
+        console.error("Erro ao buscar colaboradores:", error);
+        return [];
+    }
+}
+
 // função auxiliar para carregar avatares e imagens privadas como Blob URLs.
 async function carregarImagemPrivada(url) {
     if (!url) {
@@ -128,18 +195,6 @@ async function listaImagensDoRepositorio(id) {
     }
 }
 
-// busca os membros (colaboradores) de um projeto.
-async function pegaColaboradoresDoProjeto(id) {
-    try {
-        const response = await fetch(`${gitlabApiUrl}/projects/${id}/users`, { headers: authHeaders });
-        if (!response.ok) throw new Error(`Erro ${response.status} ao buscar colaboradores do projeto ${id}`);
-        return await response.json();
-    } catch (error) {
-        console.error("Erro ao buscar colaboradores:", error);
-        return [];
-    }
-}
-
 // encontra a URL da imagem 'card' (com qualquer extensão comum) na pasta /screenshots de um projeto
 async function encontraUrlImagemCardProjeto(projetoId, projetoPathComNamespace) {
     //Usa a função existente para listar arquivos na pasta screenshots
@@ -165,11 +220,7 @@ async function encontraUrlImagemCardProjeto(projetoId, projetoPathComNamespace) 
     return '/imagens/logo/projeto-sem-foto.png';
 }
 
-async function pegaLinguagens(idProjeto) {
-    const response = await fetch(`${gitlabApiUrl}/projects/${idProjeto}/languages`, { headers: authHeaders });
-    return await response.json()
-}
-
+// cria um vetor com os caminhos das imagens dos badges de um projeto.
 async function criarVetorBadges(idProjeto) {
     const response = await pegaLinguagens(idProjeto);
     const nomesLinguagens = Object.keys(response);
@@ -178,53 +229,6 @@ async function criarVetorBadges(idProjeto) {
         imgsBadges.push(`imagens/badges/${linguagem.toLowerCase()}.svg`)
     })
     return imgsBadges;
-}
-
-async function pegaImagensProjeto(idProjeto) {
-    const path = 'screenshots';
-    const files = await listaImagensDoRepositorio(idProjeto);
-
-    const imagens = (files || []).filter(arquivo =>
-        arquivo.type === "blob" &&
-        /\.(png|jpg|jpeg|svg|gif|webp)$/i.test(arquivo.name)
-    );
-
-    if (imagens.length === 0) {
-        return ['/imagens/logo/projeto-sem-foto.png']
-    }
-
-    //obtém branch padrão do projeto
-    const projetoDetalhes = await pegaDetalhesDoProjeto(idProjeto);
-    const branch = (projetoDetalhes && projetoDetalhes.default_branch) ? projetoDetalhes.default_branch : 'main';
-
-    //gwra links diretos para cada imagem usando API de files/raw com ref correto
-    const linkImg = imagens.map(img =>
-        `${gitlabApiUrl}/projects/${idProjeto}/repository/files/${encodeURIComponent(img.path)}/raw?ref=${encodeURIComponent(branch)}`
-    );
-
-    return linkImg;
-}
-
-async function pegaConteudoRawReadme(projeto) {
-    if (!projeto.id) {
-        console.warn("Projeto não encontrado");
-        return null;
-    }
-    const path = encodeURIComponent('READ.md');
-    const urlReadMe = `${gitlabApiUrl}/projects/${projeto.id}/repository/files/README.md/raw?ref=main`;
-
-    try {
-        const response = await fetch(urlReadMe, { headers: authHeaders })
-        if (!response.ok) {
-            console.warn(`README.md não encontrado no projeto ${projeto.name}`);
-            return null;
-        }
-        return response.text()
-    }
-    catch {
-        console.error("Outro erro ao buscar README");
-        return null;
-    }
 }
 
 //para ler o json

@@ -38,12 +38,12 @@ async function renderizarCardProjeto(projeto) {
     }
 
 }
-
+/**
 // Preenche o card principal do perfil
 async function preencherCardPerfil(usuario, resp, sup, badges, form) { //usuario vem da API, os demais vem do JSON
     if (!usuario) return;
-    const projetoss = await pegaProjetosDoUsuario(usuario.id)
-    const resultado = projetoss.find((proj) => {
+    const projetos = await pegaProjetosDoUsuario(usuario.id)
+    const resultado = projetos.find((proj) => {
         return proj.name === usuario.username
     })
 
@@ -53,24 +53,6 @@ async function preencherCardPerfil(usuario, resp, sup, badges, form) { //usuario
         readmePessoal = await pegaConteudoRawReadme(resultado);
         if (readmePessoal) {
             readmePessoal2 = marked.parse(readmePessoal);
-        }
-    }
-    catch (error) {
-        console.warn("User sem README")
-    }
-
-    if (!usuario) return;
-    const projetos = await pegaProjetosDoUsuario(usuario.id)
-    const result = projetos.find((proj) => {
-        return proj.name === usuario.username + '.formacoes'
-    })
-
-    let readmeFormacoes = null;
-    let readmeFormacoes2 = 'Nenhum README encontrado no GitLab do usuário'
-    try {
-        readmeFormacoes = await pegaConteudoRawReadme(result);
-        if (readmeFormacoes) {
-            readmeFormacoes2 = marked.parse(readmeFormacoes);
         }
     }
     catch (error) {
@@ -93,7 +75,135 @@ async function preencherCardPerfil(usuario, resp, sup, badges, form) { //usuario
     const superv = document.querySelector('.nome-lider-sup')
 
     if (cardFormacoes) {
-        cardFormacoes.innerHTML = readmeFormacoes2
+        cardFormacoes.innerHTML = readmeFormacoes || "README DE FORMAÇÕES NÃO ENCONTRADO"
+    }
+    else {
+        cardFormacoes.innerHTML = "README DE FORMAÇÕES NÃO ENCONTRADO"
+    }
+
+    //botao de download
+    butDownload.dataset.username = usuario.username
+
+
+    if (cardBadges) {
+        cardBadges.innerHTML = '';
+        const badgesHTML = Object.entries(badges)
+            .map(([linguagem, dados]) => {
+                const nivel = dados.nivel;
+                let estrelasHTML = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= nivel) {
+                        //preenchida
+                        estrelasHTML += `
+                        <figure><img src="imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
+                            <figcaption></figcaption>
+                        </figure>
+                    `;
+                    } else {
+                        //vazia
+                        estrelasHTML += `
+                        <figure><img src="imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
+                            <figcaption></figcaption>
+                        </figure>
+                    `;
+                    }
+                }
+
+                return `
+                <div class="badges">
+
+                    <figure class="badge-house"><img class="badge-icon" src="imagens/badges/${linguagem}.svg" alt="">
+                        <figcaption></figcaption>
+                    </figure>
+
+                    <p class="exp-texto">${dados.descricao}</p>
+
+                    <div class="estrelas-badges">
+                        ${estrelasHTML}
+                    </div>
+
+                </div>
+            `;
+            })
+            .join('');
+        cardBadges.innerHTML = badgesHTML;
+    }
+
+
+
+    //if (cardFormacoes) cardFormacoes.innerHTML = form;
+    //if (cardBadges) cardBadges.innerHTML = badges;
+    if (resp_tec) resp_tec.innerHTML = resp;
+    if (superv) superv.innerHTML = sup;
+
+    if (nomeEl) nomeEl.textContent = usuario.name || 'Nome não informado';
+    if (fotoEl) fotoEl.src = usuario.avatar_url;
+    if (descricaoEl) descricaoEl.textContent = usuario.bio || 'Sem descrição.';
+    if (bioCompletaEl) bioCompletaEl.innerHTML = readmePessoal2 || 'Nenhuma informação adicional fornecida.';
+
+    // Atualiza links sociais
+    if (linkGitlabEl) {
+        linkGitlabEl.href = usuario.web_url;
+        linkGitlabEl.target = '_blank';
+    }
+    if (linkLinkedinEl) {
+        linkLinkedinEl.href = `https://${usuario.linkedin}`;
+        linkLinkedinEl.target = '_blank';
+    }
+}
+*/
+// Preenche o card principal do perfil
+async function preencherCardPerfil(usuario, todosOsProjetos, resp, sup, badges) {
+    if (!usuario) return;
+    const resultado = todosOsProjetos.find((proj) => {
+        return proj.name === usuario.username
+    })
+
+    let readmePessoal = null;
+    let readmePessoal2 = 'Nenhum README encontrado no GitLab do usuário'
+    try {
+        readmePessoal = await pegaConteudoRawReadme(resultado);
+        if (readmePessoal) {
+            readmePessoal2 = marked.parse(readmePessoal);
+        }
+    }
+    catch (error) {
+        console.warn("User sem README")
+    }
+
+    const result = todosOsProjetos.find((proj) => {
+        return proj.name === usuario.username + '.formacoes'
+    })
+
+    let readmeFormacoes = null;
+    let readmeFormacoes2 = 'Nenhum README de formações encontrado'
+    try {
+        readmeFormacoes = await pegaConteudoRawReadme(result);
+        if (readmeFormacoes) {
+            readmeFormacoes2 = marked.parse(readmeFormacoes);
+        }
+    }
+    catch (error) {
+        console.warn("User sem README de formações")
+    }
+
+
+    // Usa a função de utils.js para carregar o avatar principal
+    const nomeEl = document.querySelector('.nome');
+    const fotoEl = document.querySelector('.foto-usuario');
+    const descricaoEl = document.querySelector('.descricao'); // Bio curta
+    const bioCompletaEl = document.querySelector('.caixa-quem-sou-eu'); // "Quem sou eu"
+    const linkGitlabEl = document.querySelector('.link-gitlab');
+    const linkLinkedinEl = document.querySelector('.link-linkedin');
+    const butDownload = document.querySelector('.baixar-curriculo');
+    //carregados pelo JSON
+    const cardFormacoes = document.getElementById('formacao-desktop');
+    const cardBadges = document.querySelector('.badges-section')
+    const resp_tec = document.querySelector('.nome-lider-resp');
+    const superv = document.querySelector('.nome-lider-sup')
+
+    if (cardFormacoes) {
+        cardFormacoes.innerHTML = readmeFormacoes2;
     }
     else {
         cardFormacoes.innerHTML = "README DE FORMAÇÕES NÃO ENCONTRADO"
@@ -170,48 +280,40 @@ async function preencherCardPerfil(usuario, resp, sup, badges, form) { //usuario
     }
 }
 
-
-// função principal que executa quando a página de perfil carrega
-document.addEventListener('DOMContentLoaded', async () => {
-    const username = localStorage.getItem('perfilUsername');
-
-
-    if (!username) {
-        document.body.innerHTML = '<h1>Usuário não especificado.</h1>';
-        return;
+// busca todos os dados iniciais do perfil (JSON e API)
+async function buscarDadosIniciais(username) {
+    // 1. Carrega dados do info.json
+    const response = await fetch('./info.json');
+    if (!response.ok) {
+        throw new Error('Erro ao carregar info.json');
     }
+    informacoes = await response.json();
+    const dadosUsuario = informacoes.find(usuario => usuario.nome === username);
 
-    await carregarDados();
-
-    let dadosUsuario = informacoes.find(usuario => usuario.nome === username);
-    const responsavel = dadosUsuario ? dadosUsuario.responsavel_tecnico : '-';
-    const supervisor = dadosUsuario ? dadosUsuario.supervisor : '-';
-    const badges = dadosUsuario ? dadosUsuario.badges : '-';
-    const formacoes = dadosUsuario ? dadosUsuario.formacoes : '-';
-
-    // Usa a função de utils.js
+    // 2. Busca dados da API
     const usuarioBasico = await pegaUsuarioPeloUsername(username);
     if (!usuarioBasico) {
-        document.body.innerHTML = '<h1>Usuário não encontrado.</h1>';
-        return;
+        throw new Error('Usuário não encontrado.');
     }
-
     const userId = usuarioBasico.id;
-    // busca detalhes e projetos em paralelo, usando utils.js
+
     const [usuarioDetalhado, todosOsProjetos] = await Promise.all([
         pegaDetalhesDoUsuario(userId),
         pegaProjetosDoUsuario(userId)
     ]);
 
+    // 3. Filtra os projetos
     const nomeProjetoReadme = username;
     const nomeProjetoFormacoes = `${username}.formacoes`;
-
     const projetosFiltrados = todosOsProjetos.filter(projeto => {
         return projeto.name !== nomeProjetoReadme && projeto.name !== nomeProjetoFormacoes;
     });
 
-    await preencherCardPerfil(usuarioDetalhado, responsavel, supervisor, badges, formacoes);
+    return { usuarioDetalhado, todosOsProjetos, projetosFiltrados, dadosUsuario };
+}
 
+// renderiza as listas de projetos (individuais e compartilhados)
+async function renderizarProjetos(projetos, usuarioDetalhado) {
     const containerMeusProjetos = document.querySelector('.container-meus-projetos .container-card-tela-perfil');
     const containerProjetosCompartilhados = document.querySelector('.container-projetos-compartilhados .container-card-tela-perfil');
 
@@ -222,15 +324,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     let projetosCompartilhadosCount = 0;
 
     // Promise.all para renderizar cards E buscar colaboradores em paralelo
-    const cardsPromises = projetosFiltrados.map(async (projeto) => {
-
+    const cardsPromises = projetos.map(async (projeto) => {
         const [cardHtml, colaboradores] = await Promise.all([
             renderizarCardProjeto(projeto),
             pegaColaboradoresDoProjeto(projeto.id)
         ]);
 
         const collaboratorCount = colaboradores.length;
-
         const isOwner = (usuarioDetalhado && projeto.namespace.kind === 'user' && projeto.namespace.name === usuarioDetalhado.name);
 
         let listType;
@@ -246,10 +346,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const renderedCards = await Promise.all(cardsPromises);
 
     renderedCards.forEach(cardData => {
-        if (cardData.type === 'individual') {
+        if (cardData.type === 'individual' && meusProjetosCount < 4) {
             containerMeusProjetos.innerHTML += cardData.html;
             meusProjetosCount++;
-        } else if (cardData.type === 'shared') {
+        } else if (cardData.type === 'shared' && projetosCompartilhadosCount < 4) {
             containerProjetosCompartilhados.innerHTML += cardData.html;
             projetosCompartilhadosCount++;
         }
@@ -262,8 +362,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (projetosCompartilhadosCount === 0) {
         containerProjetosCompartilhados.innerHTML = '';
     }
+}
 
-    // listener para salvar o ID do projeto e navegar
+// adiciona os listeners de clique para os botões "Ver Mais"
+function adicionarListenersDeNavegacao() {
     const containersProjetos = document.querySelectorAll('.container-card-tela-perfil');
     containersProjetos.forEach(container => {
         container.addEventListener('click', (event) => {
@@ -275,4 +377,37 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
     });
+}
+
+// função principal que executa quando a página de perfil carrega
+document.addEventListener('DOMContentLoaded', async () => {
+    const username = localStorage.getItem('perfilUsername');
+
+    if (!username) {
+        document.body.innerHTML = '<h1>Usuário não especificado.</h1>';
+        return;
+    }
+
+    try {
+        // 1. Buscar todos os dados (JSON e API)
+        const { usuarioDetalhado, todosOsProjetos, projetosFiltrados, dadosUsuario } = await buscarDadosIniciais(username);
+
+        // 2. Extrair dados do JSON
+        const responsavel = dadosUsuario ? dadosUsuario.responsavel_tecnico : '-';
+        const supervisor = dadosUsuario ? dadosUsuario.supervisor : '-';
+        const badges = dadosUsuario ? dadosUsuario.badges : '-';
+
+        // 3. Preencher o card de perfil
+        await preencherCardPerfil(usuarioDetalhado, todosOsProjetos, responsavel, supervisor, badges);
+
+        // 4. Renderizar os cards de projeto
+        await renderizarProjetos(projetosFiltrados, usuarioDetalhado);
+
+        // 5. Adicionar listeners de navegação
+        adicionarListenersDeNavegacao();
+
+    } catch (error) {
+        console.error("Erro ao carregar o perfil:", error);
+        document.body.innerHTML = `<h1>Erro ao carregar o perfil.</h1><p>${error.message}</p>`;
+    }
 });

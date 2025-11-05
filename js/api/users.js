@@ -1,5 +1,4 @@
 const colaboradores = ['julio.pereira', 'tiago.martins', 'emanuel.bravo', 'leonardo.maciel', 'joao.tavares', 'caio.caldeira', 'geovanna.alves', 'Matheus.lopes', 'kaue.santos', 'felipe.deoliveira', 'daniel.berbert', 'lucas.alves', 'leandro.ribeiro', 'matheus.casagrande', 'paulo.martins', 'bruno.luz', 'arthur.othero', 'thalisson.santos', 'marcos.alexandria', 'joao.seixas'];
-//const colaboradores = ['emanuel.bravo', 'leonardo.maciel', 'geovanna.alves', 'matheus.lopes'];
 
 let informacoes = [];
 
@@ -9,20 +8,17 @@ async function carregarDados() {
 
 // monta e adiciona o card de um colaborador na página.
 async function adicionarCard(pessoa) {
-    // Usa a função de utils.js
     const usuarioBasico = await pegaUsuarioPeloUsername(pessoa);
     if (!usuarioBasico) {
         console.warn(`Usuário ${pessoa} não encontrado ou API falhou.`);
         return;
     }
 
-    // Usa a função de utils.js para pegar detalhes (incluindo bio)
     const usuarioDetalhado = await pegaDetalhesDoUsuario(usuarioBasico.id);
     const bio = usuarioDetalhado ? usuarioDetalhado.bio : '';
     const avatarUrl = usuarioBasico.avatar_url;
 
     const dadosUsuario = informacoes.find(usuario => usuario.nome === pessoa)
-    console.log(dadosUsuario.nome)
     const responsavel = dadosUsuario ? dadosUsuario.responsavel_tecnico : '-';
     const supervisor = dadosUsuario ? dadosUsuario.supervisor : '-';
     const badges = dadosUsuario ? dadosUsuario.badges : '-';
@@ -92,7 +88,7 @@ async function adicionarCard(pessoa) {
 
 // Inicializa tudo
 async function inicializar() {
-    await carregarDados(); // Aguarda o carregamento do badges.json
+    await carregarDados(); // carregamento do badges.json
     colaboradores.forEach(colaborador => adicionarCard(colaborador));
 
 
@@ -102,7 +98,6 @@ async function inicializar() {
         if (targetButton) {
             const username = targetButton.dataset.username;
             localStorage.setItem('perfilUsername', username);
-            //localStorage.setItem('dadosUsuario', JSON.stringify(dadosUsuario));
             window.location.href = 'perfil.html';
         }
     });

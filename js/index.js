@@ -205,6 +205,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event Listeners:
 
+    // Adiciona listener para o banner do projeto PD Vitrine
+    const bannerVitrine = document.getElementById('banner-projeto-vitrine');
+    if (bannerVitrine) {
+        bannerVitrine.addEventListener('click', (event) => {
+            event.preventDefault(); // Impede a navegação imediata
+            localStorage.setItem('projetoId', '1219');
+            window.location.href = 'projeto.html';
+        });
+    }
+
+    const bannerVitrineMobile = document.getElementById('banner-projeto-vitrine-mobile');
+    if (bannerVitrineMobile) {
+        bannerVitrineMobile.addEventListener('click', (event) => {
+            event.preventDefault(); // Impede a navegação imediata
+            localStorage.setItem('projetoId', '1219');
+            window.location.href = 'projeto.html';
+        });
+    }
+
     searchInput.addEventListener('input', aplicarFiltro); // filtra em tempo real enquanto o usuário digita
 
     clearBtn.addEventListener('click', clearFilters); // Limpa filtros
@@ -270,7 +289,6 @@ async function obterFiltrosSelecionados() {
 const botaoPesquisar = document.querySelector('.btn-filter-action')
 botaoPesquisar.addEventListener('click', async () => {
     const lista = await obterFiltrosSelecionados()
-    console.log(lista)
     const divCards = document.querySelector('.div-cards-index');
     divCards.innerHTML = '';
     lista.forEach(pessoa => {
