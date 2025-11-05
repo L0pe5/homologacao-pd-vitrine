@@ -1,6 +1,7 @@
 // renderiza o card HTML de um projeto.
 let informacoes = []
 async function carregarDados() {
+    //busca as informações do json
     informacoes = await lerInfos()
 }
 
@@ -39,7 +40,7 @@ async function renderizarCardProjeto(projeto) {
 }
 
 // Preenche o card principal do perfil
-async function preencherCardPerfil(usuario, resp, sup, badges, form) {
+async function preencherCardPerfil(usuario, resp, sup, badges, form) { //usuario vem da API, os demais vem do JSON
     if (!usuario) return;
     const projetoss = await pegaProjetosDoUsuario(usuario.id)
     const resultado = projetoss.find((proj) => {
@@ -202,12 +203,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         pegaProjetosDoUsuario(userId)
     ]);
 
-    const nomeProjetoReadme = username; 
-    const nomeProjetoFormacoes = `${username}.formacoes`;
+    const nomeProjetoReadme = username;
+    const nomeProjetoFormacoes = `${username}.formacoes`;
 
-    const projetosFiltrados = todosOsProjetos.filter(projeto => {
-        return projeto.name !== nomeProjetoReadme && projeto.name !== nomeProjetoFormacoes;
-    });
+    const projetosFiltrados = todosOsProjetos.filter(projeto => {
+        return projeto.name !== nomeProjetoReadme && projeto.name !== nomeProjetoFormacoes;
+    });
 
     await preencherCardPerfil(usuarioDetalhado, responsavel, supervisor, badges, formacoes);
 
