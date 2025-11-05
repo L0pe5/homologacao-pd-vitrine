@@ -195,6 +195,7 @@ async function preencherCardPerfil(usuario, todosOsProjetos, resp, sup, badges) 
     const bioCompletaEl = document.querySelector('.caixa-quem-sou-eu'); // "Quem sou eu"
     const linkGitlabEl = document.querySelector('.link-gitlab');
     const linkLinkedinEl = document.querySelector('.link-linkedin');
+    const linkTeamsEl = document.querySelector('.link-teams');
     const butDownload = document.querySelector('.baixar-curriculo');
     //carregados pelo JSON
     const cardFormacoes = document.getElementById('formacao-desktop');
@@ -278,6 +279,10 @@ async function preencherCardPerfil(usuario, todosOsProjetos, resp, sup, badges) 
         linkLinkedinEl.href = `https://${usuario.linkedin}`;
         linkLinkedinEl.target = '_blank';
     }
+    linkTeamsEl.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = `mailto:${usuario.username}@pdcase.com.br`;
+    });
 }
 
 // busca todos os dados iniciais do perfil (JSON e API)
