@@ -38,120 +38,7 @@ async function renderizarCardProjeto(projeto) {
     }
 
 }
-/**
-// Preenche o card principal do perfil
-async function preencherCardPerfil(usuario, resp, sup, badges, form) { //usuario vem da API, os demais vem do JSON
-    if (!usuario) return;
-    const projetos = await pegaProjetosDoUsuario(usuario.id)
-    const resultado = projetos.find((proj) => {
-        return proj.name === usuario.username
-    })
 
-    let readmePessoal = null;
-    let readmePessoal2 = 'Nenhum README encontrado no GitLab do usuário'
-    try {
-        readmePessoal = await pegaConteudoRawReadme(resultado);
-        if (readmePessoal) {
-            readmePessoal2 = marked.parse(readmePessoal);
-        }
-    }
-    catch (error) {
-        console.warn("User sem README")
-    }
-
-
-    // Usa a função de utils.js para carregar o avatar principal
-    const nomeEl = document.querySelector('.nome');
-    const fotoEl = document.querySelector('.foto-usuario');
-    const descricaoEl = document.querySelector('.descricao'); // Bio curta
-    const bioCompletaEl = document.querySelector('.caixa-quem-sou-eu'); // "Quem sou eu"
-    const linkGitlabEl = document.querySelector('.link-gitlab');
-    const linkLinkedinEl = document.querySelector('.link-linkedin');
-    const butDownload = document.querySelector('.baixar-curriculo');
-    //carregados pelo JSON
-    const cardFormacoes = document.getElementById('formacao-desktop');
-    const cardBadges = document.querySelector('.badges-section')
-    const resp_tec = document.querySelector('.nome-lider-resp');
-    const superv = document.querySelector('.nome-lider-sup')
-
-    if (cardFormacoes) {
-        cardFormacoes.innerHTML = readmeFormacoes || "README DE FORMAÇÕES NÃO ENCONTRADO"
-    }
-    else {
-        cardFormacoes.innerHTML = "README DE FORMAÇÕES NÃO ENCONTRADO"
-    }
-
-    //botao de download
-    butDownload.dataset.username = usuario.username
-
-
-    if (cardBadges) {
-        cardBadges.innerHTML = '';
-        const badgesHTML = Object.entries(badges)
-            .map(([linguagem, dados]) => {
-                const nivel = dados.nivel;
-                let estrelasHTML = '';
-                for (let i = 1; i <= 5; i++) {
-                    if (i <= nivel) {
-                        //preenchida
-                        estrelasHTML += `
-                        <figure><img src="imagens/icones/estrela-preenchida.svg" alt="" class="icon-estrela">
-                            <figcaption></figcaption>
-                        </figure>
-                    `;
-                    } else {
-                        //vazia
-                        estrelasHTML += `
-                        <figure><img src="imagens/icones/estrela-vazia.svg" alt="" class="icon-estrela">
-                            <figcaption></figcaption>
-                        </figure>
-                    `;
-                    }
-                }
-
-                return `
-                <div class="badges">
-
-                    <figure class="badge-house"><img class="badge-icon" src="imagens/badges/${linguagem}.svg" alt="">
-                        <figcaption></figcaption>
-                    </figure>
-
-                    <p class="exp-texto">${dados.descricao}</p>
-
-                    <div class="estrelas-badges">
-                        ${estrelasHTML}
-                    </div>
-
-                </div>
-            `;
-            })
-            .join('');
-        cardBadges.innerHTML = badgesHTML;
-    }
-
-
-
-    //if (cardFormacoes) cardFormacoes.innerHTML = form;
-    //if (cardBadges) cardBadges.innerHTML = badges;
-    if (resp_tec) resp_tec.innerHTML = resp;
-    if (superv) superv.innerHTML = sup;
-
-    if (nomeEl) nomeEl.textContent = usuario.name || 'Nome não informado';
-    if (fotoEl) fotoEl.src = usuario.avatar_url;
-    if (descricaoEl) descricaoEl.textContent = usuario.bio || 'Sem descrição.';
-    if (bioCompletaEl) bioCompletaEl.innerHTML = readmePessoal2 || 'Nenhuma informação adicional fornecida.';
-
-    // Atualiza links sociais
-    if (linkGitlabEl) {
-        linkGitlabEl.href = usuario.web_url;
-        linkGitlabEl.target = '_blank';
-    }
-    if (linkLinkedinEl) {
-        linkLinkedinEl.href = `https://${usuario.linkedin}`;
-        linkLinkedinEl.target = '_blank';
-    }
-}
-*/
 // Preenche o card principal do perfil
 async function preencherCardPerfil(usuario, todosOsProjetos, resp, sup, badges) {
     if (!usuario) return;
@@ -198,16 +85,26 @@ async function preencherCardPerfil(usuario, todosOsProjetos, resp, sup, badges) 
     const linkTeamsEl = document.querySelector('.link-teams');
     const butDownload = document.querySelector('.baixar-curriculo');
     //carregados pelo JSON
-    const cardFormacoes = document.getElementById('formacao-desktop');
+    const cardFormacoesDesktop = document.getElementById('formacao-desktop');
+    const cardFormacoesMobile = document.getElementById('formacao-mobile');
     const cardBadges = document.querySelector('.badges-section')
     const resp_tec = document.querySelector('.nome-lider-resp');
     const superv = document.querySelector('.nome-lider-sup')
 
-    if (cardFormacoes) {
-        cardFormacoes.innerHTML = readmeFormacoes2;
+    // preenche as formações desktop
+    if (cardFormacoesDesktop) {
+        cardFormacoesDesktop.innerHTML = readmeFormacoes2;
     }
     else {
-        cardFormacoes.innerHTML = "README DE FORMAÇÕES NÃO ENCONTRADO"
+        cardFormacoesDesktop.innerHTML = "README DE FORMAÇÕES NÃO ENCONTRADO"
+    }
+    
+    // preenche as formações mobile
+    if (cardFormacoesMobile) {
+        cardFormacoesMobile.innerHTML = readmeFormacoes2;
+    }
+    else {
+        cardFormacoesMobile.innerHTML = "README DE FORMAÇÕES NÃO ENCONTRADO"
     }
 
     //botao de download
@@ -259,9 +156,6 @@ async function preencherCardPerfil(usuario, todosOsProjetos, resp, sup, badges) 
     }
 
 
-
-    //if (cardFormacoes) cardFormacoes.innerHTML = form;
-    //if (cardBadges) cardBadges.innerHTML = badges;
     if (resp_tec) resp_tec.innerHTML = resp;
     if (superv) superv.innerHTML = sup;
 
@@ -287,7 +181,7 @@ async function preencherCardPerfil(usuario, todosOsProjetos, resp, sup, badges) 
 
 // busca todos os dados iniciais do perfil (JSON e API)
 async function buscarDadosIniciais(username) {
-    // 1. Carrega dados do info.json
+    // carrega dados do info.json
     const response = await fetch('./info.json');
     if (!response.ok) {
         throw new Error('Erro ao carregar info.json');
@@ -295,7 +189,7 @@ async function buscarDadosIniciais(username) {
     informacoes = await response.json();
     const dadosUsuario = informacoes.find(usuario => usuario.nome === username);
 
-    // 2. Busca dados da API
+    // busca dados da API
     const usuarioBasico = await pegaUsuarioPeloUsername(username);
     if (!usuarioBasico) {
         throw new Error('Usuário não encontrado.');
@@ -307,7 +201,7 @@ async function buscarDadosIniciais(username) {
         pegaProjetosDoUsuario(userId)
     ]);
 
-    // 3. Filtra os projetos
+    // filtra os projetos
     const nomeProjetoReadme = username;
     const nomeProjetoFormacoes = `${username}.formacoes`;
     const projetosFiltrados = todosOsProjetos.filter(projeto => {
