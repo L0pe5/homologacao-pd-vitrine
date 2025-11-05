@@ -3,15 +3,15 @@ let currentIndex = 0;
 
 // Preenche o card de Título e Descrição
 function preencherInfoPrincipal(projeto, readmeContent) {
-    const infoContainer = document.querySelector('.project-info-sidebar');
-    const titleEl = infoContainer.querySelector('.project-card:nth-of-type(1) h3');
-    const descEl = infoContainer.querySelector('.project-card:nth-of-type(1) p');
+    const infoContainer = document.querySelector('.project-info-sidebar');
+    const titleEl = infoContainer.querySelector('.project-card:nth-of-type(1) h3');
+    const descEl = infoContainer.querySelector('.project-card:nth-of-type(1) p');
 
-    if (titleEl) titleEl.textContent = projeto.name;
-    
-    // Usa o README como descrição, se existir; senão, usa a descrição do projeto
-    const html = readmeContent ? marked.parse(readmeContent) : ''; //para formatar readme
-    if (descEl) descEl.innerHTML = html || projeto.description || 'Sem descrição.';
+    if (titleEl) titleEl.textContent = projeto.name;
+
+    // Usa o README como descrição, se existir; senão, usa a descrição do projeto
+    const html = readmeContent ? marked.parse(readmeContent) : ''; //para formatar readme
+    if (descEl) descEl.innerHTML = html || projeto.description || 'Sem descrição.';
 }
 
 // Preenche a seção de Badges de tecnologia
@@ -46,7 +46,7 @@ async function preencherLinks(projetoId, webUrl) {
     const badgesProjeto = await pegaBadgesAplicacaoProjeto(projetoId);
     const deployBadge = badgesProjeto.find(b => b.name.toLowerCase() === 'deploy');
     const deployUrl = deployBadge ? deployBadge.link_url : null;
-    
+
     if (deployUrl) {
         linksContainer.innerHTML += `<a href="${deployUrl}" class="btn btn-project" target="_blank" rel="noopener noreferrer">Aplicação</a>`;
     }
@@ -61,13 +61,13 @@ function preencherColaboradores(colaboradores) {
     if (!collabList) return;
 
     if (colaboradores.length > 0) {
-        const collabHtmls = colaboradores.map(user => 
+        const collabHtmls = colaboradores.map(user =>
             `<li class="collaborator-item" data-username="${user.username}" style="cursor: pointer;">
                 <img src="${user.avatar_url}" alt="Foto de ${user.name}" class="profile-pic">
                 <span class="collaborator-name">${user.name}</span>
             </li>`
         ).join('');
-        
+
         collabList.innerHTML = collabHtmls;
 
         // Adiciona o listener para redirecionar
@@ -91,7 +91,7 @@ function preencherColaboradores(colaboradores) {
 function updateModalImage(index) {
     if (index < 0 || index >= projectImages.length) return;
     currentIndex = index;
-    
+
     const modalImage = document.getElementById('modal-image');
     modalImage.src = projectImages[currentIndex];
 
@@ -103,7 +103,7 @@ function updateModalImage(index) {
 
 // carrosel mobile
 function renderCarousel() {
-    const carouselContainer = document.getElementById('project-carousel-mobile');
+    const carouselContainer = document.getElementById('project-carousel-mobile');
     if (!carouselContainer) return;
 
     if (projectImages.length === 0) {
@@ -125,7 +125,7 @@ function renderCarousel() {
 
 // galeria desktop, dinamica para a quantidade de imagens
 function renderDesktopGallery() {
-    const galleryContainer = document.getElementById('project-gallery-desktop');
+    const galleryContainer = document.getElementById('project-gallery-desktop');
     if (!galleryContainer) return;
 
     if (projectImages.length === 0) {
@@ -224,7 +224,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (!projeto) {
             throw new Error(`Projeto com ID ${projetoId} não encontrado.`);
         }
-
+        const nomeProj = document.querySelector('.nome-proj');
+        nomeProj.innerHTML = `${projeto.name}`
         document.title = projeto.name || 'Projeto';
 
         const [readmeContent, imagensUrls, badgesSrcs, colaboradores] = await Promise.all([
@@ -242,7 +243,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         preencherBadges(badgesSrcs);
         await preencherLinks(projetoId, projeto.web_url); // Esta precisa de await
         preencherColaboradores(colaboradores);
-        
+
         // renderiza a galeria/carrossel
         renderCarousel();
         renderDesktopGallery();
