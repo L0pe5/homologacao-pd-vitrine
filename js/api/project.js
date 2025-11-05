@@ -4,10 +4,10 @@ let currentIndex = 0;
 // Preenche o card de Título e Descrição
 function preencherInfoPrincipal(projeto, readmeContent) {
     const infoContainer = document.querySelector('.project-info-sidebar');
-    const titleEl = infoContainer.querySelector('.project-card:nth-of-type(1) h3');
+//     const titleEl = infoContainer.querySelector('.project-card:nth-of-type(1) h3');
     const descEl = infoContainer.querySelector('.project-card:nth-of-type(1) p');
 
-    if (titleEl) titleEl.textContent = projeto.name;
+//     if (titleEl) titleEl.textContent = projeto.name;
     
     // Usa o README como descrição, se existir; senão, usa a descrição do projeto
     const html = readmeContent ? marked.parse(readmeContent) : ''; //para formatar readme
