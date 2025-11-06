@@ -1486,6 +1486,7 @@ figcaption {
     font-size: 14px;
     font-weight: 700;
     margin-bottom: 0.5rem;
+    padding-left: 16px ;
     text-align: center;
 }
 
@@ -1955,7 +1956,7 @@ figure {
     .project-info-sidebar {
         border: 1px solid var(--amarelo-pd);
         border-radius: 15px;
-        padding: 25px;
+        padding: 25px 12px;
         background-color: var(--cor-bg-card);
         max-width: 448px;
     }
@@ -2110,7 +2111,7 @@ figure {
     .project-info-sidebar {
         border: 1px solid var(--amarelo-pd);
         border-radius: 15px;
-        padding: 25px;
+        padding: 25px 12px;
         background-color: var(--cor-bg-card);
         max-width: 448px;
     }
@@ -2800,6 +2801,8 @@ figure {
 .readme-p {
     max-height: 535px;
     overflow: auto;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 .readme-p::-webkit-scrollbar {
