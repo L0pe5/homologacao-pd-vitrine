@@ -753,6 +753,8 @@ header {
     width: 40.625vw;
     max-width: 130px;
     height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
     margin-top: 10px;
     border-radius: 100%;
     margin-bottom: 18px;
@@ -883,6 +885,8 @@ header {
         width: 13.54vw;
         max-width: 195px;
         height: auto;
+        aspect-ratio: 1/1;
+        object-fit: cover;
         margin-top: 35px;
         margin-bottom: 25px;
         border-radius: 100%;
@@ -1482,6 +1486,7 @@ figcaption {
     font-size: 14px;
     font-weight: 700;
     margin-bottom: 0.5rem;
+    padding-left: 16px ;
     text-align: center;
 }
 
@@ -1951,7 +1956,7 @@ figure {
     .project-info-sidebar {
         border: 1px solid var(--amarelo-pd);
         border-radius: 15px;
-        padding: 25px;
+        padding: 25px 12px;
         background-color: var(--cor-bg-card);
         max-width: 448px;
     }
@@ -2106,7 +2111,7 @@ figure {
     .project-info-sidebar {
         border: 1px solid var(--amarelo-pd);
         border-radius: 15px;
-        padding: 25px;
+        padding: 25px 12px;
         background-color: var(--cor-bg-card);
         max-width: 448px;
     }
@@ -2329,7 +2334,9 @@ figure {
 .card-index__foto {
     width: 34.06vw;
     max-width: 109px;
+    max-height: 109px;
     height: auto;
+    object-fit: cover;
 }
 
 /* card perfil do index: corpo do conteudo*/
@@ -2432,6 +2439,7 @@ figure {
     .card-index__foto {
         width: 7.25em;
         height: 7.25em;
+        object-fit: cover;
     }
 
     /* card perfil do index: identificação*/
@@ -2793,6 +2801,8 @@ figure {
 .readme-p {
     max-height: 535px;
     overflow: auto;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 .readme-p::-webkit-scrollbar {
@@ -2840,4 +2850,8 @@ figure {
 .carousel-control-next:hover,
 .carousel-control-prev:hover {
     opacity: 0.5;
+}
+
+#botao-voltar-projeto:hover {
+    cursor: pointer;
 }
