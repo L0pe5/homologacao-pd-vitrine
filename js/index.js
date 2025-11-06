@@ -241,8 +241,6 @@ document.addEventListener('DOMContentLoaded', () => {
 async function obterFiltrosSelecionados() {
     const badgesAdicionadas = document.getElementById('added-filters-container');
     let nomeDigitado = document.getElementById('filter-name').value.toLowerCase().trim();
-    //Se o usuário esquecer de adicionar a última badge:
-
     //dentro de badges adicionadas entra na div added-filter-row. para badge entra em badge-column e
     const vetorBadges = badgesAdicionadas.querySelectorAll('.added-filter-row')
 
@@ -316,7 +314,19 @@ botaoPesquisar.addEventListener('click', async () => {
     const lista = await obterFiltrosSelecionados()
     const divCards = document.querySelector('.div-cards-index');
     divCards.innerHTML = '';
-    lista.forEach(pessoa => {
-        adicionarCard(pessoa.nome)
-    })
+    const espaçoDosCards = document.querySelector('.section-cards-index')
+    if (lista.length === 0) {
+        espaçoDosCards.innerHTML = `
+            <div class="div-erro">
+                <p class="texto-erro">Nenhum usuário encontrado</p>
+                <button class="botao-erro" onclick="window.location.href='index.html'">Tentar outra busca</button>
+            </div>
+        `
+    }
+    else {
+        lista.forEach(pessoa => {
+            adicionarCard(pessoa.nome)
+        })
+    }
+
 })
