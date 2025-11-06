@@ -2851,3 +2851,7 @@ figure {
 .carousel-control-prev:hover {
     opacity: 0.5;
 }
+
+#botao-voltar-projeto:hover {
+    cursor: pointer;
+}

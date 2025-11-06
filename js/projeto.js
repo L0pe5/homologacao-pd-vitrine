@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const galleryContainer = document.getElementById('project-gallery-desktop');
     const galleryModal = document.getElementById('gallery-modal');
     const modalImage = document.getElementById('modal-image');
+    const botaoVoltarProjeto = document.getElementById('botao-voltar-projeto');
     
     let currentIndex = 0;
 
@@ -96,6 +97,13 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('modal-prev-btn').addEventListener('click', () => {
             const prevIndex = (currentIndex - 1 + projectImages.length) % projectImages.length;
             updateModalImage(prevIndex);
+        });
+    }
+
+    // botão voltar para a página de projetos
+    if (botaoVoltarProjeto) {
+        botaoVoltarProjeto.addEventListener('click', () => {
+            window.history.back();
         });
     }
 
