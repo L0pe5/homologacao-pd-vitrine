@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentSelectedBadge = null;
         currentSelectedLevel = null;
         badgeSelect.innerHTML = `<span>Badges</span>${arrowIconSVG}`;
-        levelSelect.innerHTML = `<span>Níveis de experiência</span>${arrowIconSVG}`;
+        levelSelect.innerHTML = `<span class="sem-exp-marcada">Níveis de experiência</span>${arrowIconSVG}`;
     };
 
     // atualiza opções de badges disponíveis no dropdown, removendo as já adicionadas
@@ -206,23 +206,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event Listeners:
 
     // Adiciona listener para o banner do projeto PD Vitrine
-    const bannerVitrine = document.getElementById('banner-projeto-vitrine');
-    if (bannerVitrine) {
-        bannerVitrine.addEventListener('click', (event) => {
-            event.preventDefault(); // Impede a navegação imediata
-            localStorage.setItem('projetoId', '1219');
-            window.location.href = 'projeto.html';
-        });
-    }
+    const bannerVitrine = document.getElementById('banner-projeto-vitrine');
+    if (bannerVitrine) {
+        bannerVitrine.addEventListener('click', (event) => {
+            event.preventDefault(); // Impede a navegação imediata
+            localStorage.setItem('projetoId', '1219');
+            window.location.href = 'projeto.html';
+        });
+    }
 
-    const bannerVitrineMobile = document.getElementById('banner-projeto-vitrine-mobile');
-    if (bannerVitrineMobile) {
-        bannerVitrineMobile.addEventListener('click', (event) => {
-            event.preventDefault(); // Impede a navegação imediata
-            localStorage.setItem('projetoId', '1219');
-            window.location.href = 'projeto.html';
-        });
-    }
+    const bannerVitrineMobile = document.getElementById('banner-projeto-vitrine-mobile');
+    if (bannerVitrineMobile) {
+        bannerVitrineMobile.addEventListener('click', (event) => {
+            event.preventDefault(); // Impede a navegação imediata
+            localStorage.setItem('projetoId', '1219');
+            window.location.href = 'projeto.html';
+        });
+    }
 
     searchInput.addEventListener('input', aplicarFiltro); // filtra em tempo real enquanto o usuário digita
 
@@ -241,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function obterFiltrosSelecionados() {
     const badgesAdicionadas = document.getElementById('added-filters-container');
     let nomeDigitado = document.getElementById('filter-name').value.toLowerCase().trim();
+    //Se o usuário esquecer de adicionar a última badge:
 
     //dentro de badges adicionadas entra na div added-filter-row. para badge entra em badge-column e
     const vetorBadges = badgesAdicionadas.querySelectorAll('.added-filter-row')
@@ -258,6 +259,30 @@ async function obterFiltrosSelecionados() {
         }
         vetorLinguagens.push({ linguagem: novaLinguagem, nivel: novoNivel });
     })
+
+    const selectionRow = document.querySelector('#selection-row');
+    const badgeEsquecida = selectionRow.querySelector('.badge-select img');
+
+    if (badgeEsquecida && badgeEsquecida.alt.includes('Badge')) {
+        const altText = badgeEsquecida.alt;
+        const linguagemFormatada = altText.replace('Badge ', '').toLowerCase();
+
+        const levelSelect = selectionRow.querySelector('.level-select');
+        const nivelEsquecido = levelSelect.querySelector('.level-item span');
+
+        let nivelTexto = "Sem classificação";
+        if (nivelEsquecido) {
+            nivelTexto = nivelEsquecido.textContent.trim();
+        }
+
+        vetorLinguagens.push({
+            linguagem: linguagemFormatada,
+            nivel: nivelTexto
+        });
+
+        console.log('Badge esquecida adicionada:', vetorLinguagens);
+    }
+
     //return vetorLinguagens
     let informacoes = [];
     informacoes = await lerInfos(); //puxa dados do json
