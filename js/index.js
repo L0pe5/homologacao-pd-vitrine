@@ -314,14 +314,20 @@ botaoPesquisar.addEventListener('click', async () => {
     const lista = await obterFiltrosSelecionados()
     const divCards = document.querySelector('.div-cards-index');
     divCards.innerHTML = '';
-    const espaçoDosCards = document.querySelector('.section-cards-index')
+    const body = document.querySelector('body')
     if (lista.length === 0) {
-        espaçoDosCards.innerHTML = `
-            <div class="div-erro">
-                <p class="texto-erro">Nenhum usuário encontrado</p>
-                <button class="botao-erro" onclick="window.location.href='index.html'">Tentar outra busca</button>
-            </div>
-        `
+        const toast = document.getElementById('toast');
+        toast.style.display = 'flex';
+        toast.style.opacity = '1'
+        //Esconde o toast depois de 3 segundos
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.style.display = 'none', 300);
+        }, 3000);
+        setTimeout(() => {
+            inicializar()
+        }, 100);
+        setTimeout(() => document.getElementById('modal__filtragem').click(), 1400);
     }
     else {
         lista.forEach(pessoa => {
@@ -330,3 +336,4 @@ botaoPesquisar.addEventListener('click', async () => {
     }
 
 })
+

@@ -561,8 +561,7 @@ header {
         border-radius: 0.93em;
     }
 
-    .mobile__btn-sistema:focus,
-    .mobile__btn-sistema:active {
+    .btn-sistema[aria-expanded="true"] {
         border-radius: 0.93em 0.93em 0 0;
     }
 
@@ -1031,6 +1030,7 @@ figcaption {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 }
 
 
@@ -1039,6 +1039,7 @@ figcaption {
     .container-meus-projetos,
     .container-projetos-compartilhados {
         align-items: flex-start;
+        margin-left: 4.7vw;
     }
 }
 
@@ -1779,6 +1780,7 @@ figure {
 
 #formacao-desktop {
     display: none;
+    text-align: start;
 }
 
 /*ESTILIZAÇÃO DA BARRA*/
@@ -2554,9 +2556,8 @@ figure {
     .article-quemSou-Formação ul {
         display: flex;
         align-items: start;
-        justify-content: space-around;
+        justify-content: flex-start;
         flex-direction: column;
-        gap: 20px;
     }
 
     .back-amarelo {
@@ -2705,6 +2706,7 @@ figure {
 
     #formacao-mobile {
         display: none;
+        text-align: start;
     }
 }
 
@@ -2881,4 +2883,40 @@ figure {
     font-weight: 600;
     border-radius: 8px;
     cursor: pointer;
+}
+
+#formacao-mobile {
+    text-align: start;
+}
+
+#formacao-desktop p {
+    width: 90%;
+}
+
+#toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #F4BC1D;
+    color: var(--cor-bg-card);
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-family: var(--font-vollkorn);
+    font-size: 20px;
+    font-weight: 600;
+    display: none;
+    z-index: 100;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (min-width: 720px) {
+    #toast {
+        width: 346px;
+        height: 128px;
+        color: var(--cor-bg-card);
+    }
+
 }

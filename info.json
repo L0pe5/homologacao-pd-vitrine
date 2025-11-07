@@ -152,24 +152,28 @@
         "nome_completo": "Matheus Lopes",
         "badges": {
             "html": {
-                "nivel": 3,
-                "descricao": "Intermediário"
+                "nivel": 5,
+                "descricao": "Especialista"
             },
             "css": {
-                "nivel": 1,
-                "descricao": "Iniciante"
+                "nivel": 5,
+                "descricao": "Especialista"
             },
             "javascript": {
-                "nivel": 2,
-                "descricao": "Básico"
+                "nivel": 5,
+                "descricao": "Especialista"
             },
             "postgresql": {
-                "nivel": 3,
-                "descricao": "Intermediário"
+                "nivel": 5,
+                "descricao": "Especialista"
             },
             "figma": {
-                "nivel": 1,
-                "descricao": "Iniciante"
+                "nivel": 4,
+                "descricao": "Avançado"
+            },
+            "java": {
+                "nivel": 5,
+                "descricao": "Avançado"
             }
         },
         "responsavel_tecnico": "Júlio Pereira",
